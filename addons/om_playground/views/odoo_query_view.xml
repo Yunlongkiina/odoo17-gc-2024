@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_odoo_query_form" model="ir.ui.view">
+        <field name="name">odoo.query.form</field>
+        <field name="model">odoo.query</field>
+        <field name="arch" type="xml">
+            <form>
+                <group string="Type a query to execute" colspan="4">
+                    <field name="query" nolabel="1" placeholder="SELECT name, email FROM res_partner"/>
+                </group>
+                <group string="Output Type" colspan="4">
+                    <field name="output_type" widget="radio" nolabel="1" options="{'horizontal': true}"/>
+                </group>
+                <div>
+                    <button name="action_execute" type="object" string="Execute" class="oe_highlight"/>
+                    <button name="action_clear" string=" Clear" class="fa fa-refresh" type="object"
+                                data-hotkey="c"/>
+                </div>
+                <div style="overflow:visible !important;">
+                    <group>
+                        <field name="html" readonly="1" nolabel="1"
+                               invisible = "output_type != 'formatted'"/>
+                    </group>
+                    <group>
+                        <field name="raw_output" readonly="1" nolabel="1"
+                               invisible = "output_type != 'raw'"/>
+                    </group>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_query" model="ir.actions.act_window">
+        <field name="name">Query</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">odoo.query</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+
+    <menuitem id="menu_query" parent="menu_om_tools"
+              name="Query" action="action_query" sequence="20"/>
+
+
+</odoo>

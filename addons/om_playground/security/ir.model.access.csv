@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access.odoo.playground,access_odoo_playground,om_playground.model_odoo_playground,base.group_user,1,1,1,1
+access.odoo.query,access_odoo_query,om_playground.model_odoo_query,base.group_user,1,1,1,1
+

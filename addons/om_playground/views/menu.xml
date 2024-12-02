@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+   <menuitem id="menu_om_tools"
+              name="Tools"
+              parent="base.menu_custom"
+              sequence="10"/>
+
+</odoo>

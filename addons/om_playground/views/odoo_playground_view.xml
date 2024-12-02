@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_odoo_playground_form" model="ir.ui.view">
+        <field name="name">odoo.playground.form</field>
+        <field name="model">odoo.playground</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="model_id"/>
+                    <field name="code" widget="ace" options="{'mode': 'python'}"/>
+                </group>
+                <group>
+                    <div>
+                        <button name="action_execute" string=" Execute" type="object"
+                                class="fa fa-check oe_highlight" data-hotkey="q"/>
+                        <button name="action_clear" string=" Clear" class="fa fa-refresh" type="object"
+                                data-hotkey="c"/>
+                    </div>
+                </group>
+                <group>
+                    <field name="result" readonly="1"/>
+                </group>
+                <group>
+                    <div style="margin-top: 4px;">
+                        <h3>Help</h3>
+                        <p>Various available functions and variables available in odoo environment:</p>
+                        <ul>
+                            <li><code>self</code>: Current Object on which the action is triggered</li>
+                            <li><code>env</code>: Odoo Environment on which the action is triggered</li>
+                            <li><code>self.env.user</code>: Return the current user (as an instance)</li>
+                            <li><code>self.env.is_system</code>: Return whether the current user has group "Settings", or is in superuser mode</li>
+                            <li><code>self.env.is_admin</code>: Return whether the current user has group "Access Rights", or is in superuser mode</li>
+                            <li><code>self.env.is_superuser</code>: Return whether the environment is in superuser mode</li>
+                            <li><code>self.env.company</code>:Return the current company (as an instance)</li>
+                            <li><code>self.env.companies</code>: Return a recordset of the enabled companies by the user</li>
+                            <li><code>self.env.lang</code>: Return the current language code </li>
+                            <li><code>self.env.cr</code>: Database Cursor</li>
+                            <li><code>self.env.context</code>: Context</li>
+                        </ul>
+                    </div>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_playground" model="ir.actions.act_window">
+        <field name="name">Play Ground</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">odoo.playground</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+
+    <menuitem id="menu_playground"
+              name="Play Ground"
+              parent="menu_om_tools"
+              action="action_playground"
+              sequence="10"/>
+
+
+</odoo>

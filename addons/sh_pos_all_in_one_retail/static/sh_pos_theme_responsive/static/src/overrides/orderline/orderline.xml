@@ -1,0 +1,93 @@
+<templates id="template" xml:space="preserve">
+    <t t-name="Orderline" t-inherit="point_of_sale.Orderline" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('product-name')]" position="before">
+            <t t-if="env.services.pos.pos_theme_settings_data and env.services.pos.pos_theme_settings_data[0] and env.services.pos.pos_theme_settings_data[0].sh_image_display_in_cart">
+	            <span class="span_product_image">
+                    <img t-att-src="env.services.pos.get_product_image_url(line.product_id,line.write_date)" class="cart_product_image" t-att-alt="line.productName" />
+	            </span>
+	         </t>
+        </xpath>
+        <xpath expr="//div[hasclass('product-name')]//span" position="after">
+            <div class="sh_order_line_detail">
+                <ul class="info-list sh_info_list">
+                    <t t-if='env.services.pos.config.sh_enable_product_code_in_cart'>
+                        <t t-if="line.product_default_code_in_cart">
+                            <li class="sh_default_code_li">
+                                <span id="test_1" class="sh_default_code">
+                                    [
+                                    <t t-esc="line.product_default_code_in_cart" />
+                                    ]
+                                </span>
+                            </li>
+                        </t>
+                    </t>
+                    <t t-if='env.services.pos.config.sh_enable_product_code_in_receipt'>
+                        <t t-if="line.product_default_code_in_receipt">
+                            <span id="test_1" class="sh_default_code">
+                                [
+                                <t t-esc="line.product_default_code_in_receipt" />
+                                ]
+                            </span>
+                        </t>
+                    </t>
+                    <li>
+                        <em t-esc="line.qty" class="qty fst-normal fw-bolder me-1" /> <t t-if="line.unit" t-esc="line.unit" /> 
+                        x <s t-esc="line.oldUnitPrice" t-if="line.oldUnitPrice" /> 
+                        <t t-esc="line.unitPrice" /> <span t-if="line.unit"> / <t t-esc="line.unit" /></span>
+                    </li>
+                    <!-- Here we use another caculation way to show discount by list price instend of pricelist price 
+                         Need gc_pricelist_all_in_one module installed
+                         Otherwise need to use original caculation
+                         GC@WANG ZHE -->
+                    <!--<li t-if="line.discount !== '0'">-->
+                    <li t-if="line.line_discount !== 0 and line.list_price > line.unit_price">
+                        With <em><t t-esc="100-Math.round(line.unit_price / line.list_price/0.01)" />% </em> discount
+                    </li>
+                    <li t-if="line.discount !== '0'">
+                            includes
+                            <em>
+                                <t t-esc="line.discount" />%
+                            </em>
+                            manual discount (based on pricelist price)
+                    </li>
+                    <li t-if="line.comboParent" class="combo-parent-name">
+                        <i class="fa fa-th-large me-2" role="img" aria-label="Combo" title="Combo"/>
+                        <t t-esc="line.comboParent" />
+                    </li>
+                    <t t-slot="default" />
+                    <li t-if="line.customerNote" class="customer-note w-50 p-2 my-1 rounded text-bg-warning text-warning bg-opacity-25 text-break">
+                        <i class="fa fa-sticky-note me-1" role="img" aria-label="Customer Note" title="Customer Note"/>
+                        <t t-esc="line.customerNote" />
+                    </li>
+                    <li t-if="line.internalNote" class="internal-note w-50 p-2 my-1 rounded text-bg-info text-info bg-opacity-25 text-break">
+                        <i class="fa fa-tag me-1" role="img" aria-label="Note" title="Note"/>
+                        <t t-esc="line.internalNote" />
+                    </li>
+                </ul>
+            </div>
+        </xpath>
+        <!-- Here shows both display_price & product list price 
+             GC@WANG ZHE-->
+        <xpath expr="//div[hasclass('product-price')]/t" position="replace">
+            <t t-if="line.price === 'free'">
+                free
+            </t>
+            <t t-elif="line.list_price > line.unit_price and line.line_discount > '0'">
+                <span style="text-decoration: line-through;" class="price">
+                    <t t-esc="this.env.utils.formatCurrency(line.list_price * line.line_qty)" />
+                </span>
+                <br/>
+                <span class="price">
+                    <t t-esc="line.price" />
+                </span>
+            </t>
+        </xpath>
+        <!-- GC extention ends-->
+        <xpath expr="//div[hasclass('price')]" position="after">
+            <t t-slot="sh-product-price"/>
+        </xpath>
+        <xpath expr="//div[hasclass('product-name')]//span" position="attributes">
+            <attribute name="class">sh_product_name</attribute>
+        </xpath>
+    </t>
+</templates>

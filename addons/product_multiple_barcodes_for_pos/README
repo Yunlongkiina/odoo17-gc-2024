@@ -1,0 +1,5 @@
+Version : 17.0.0.1  (05/02/2024)
+	- Issue fixed for barcode scan , while default barcode scanned get wrong price.
+
+Version : 17.0.0.2 (14/02/2024)
+	- Issue fixed for wrong barcode scan . add  condition for that.

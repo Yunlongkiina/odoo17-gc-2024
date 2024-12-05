@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_operation_data_prepare_user,access.stock.operation.data.prepare.user,model_stock_operation_data_prepare,stock.group_stock_manager,1,1,1,1
+access_stock_operation_data_prepare_manager,access.stock.operation.data.prepare.manager,model_stock_operation_data_prepare,stock.group_stock_user,1,1,1,1

@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+
+    <t t-name="custom_barcode_app.WarehouseOperation" owl="1">
+
+        <div style="height:100%; font-family: 'Argentum Sans';">
+                <t>
+                    <div id="popup1" class="validate_popup_overlay" t-if="state.validate_popup">
+                        <div style="height:100%;">
+                            <div class="validate_popup_responsive">
+                                <h2 style="font-weight: 500; text-align:center;">Do you want to save the changes?</h2>
+                                <div>
+                                    <div style="display:flex; justify-content: space-evenly;margin-top: 20px;">
+                                        <button class="validate-popup-button-discard-responsive" t-on-click="discardValidatePopUp">Discard</button>
+                                        <button  class="validate-popup-button-responsive" t-on-click="applyTransfer">Apply</button>
+                                        <button  class="validate-popup-button-responsive" t-on-click="applyValidateTransfer">Validate</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+                <t>
+                    <div id="popup1" class="validate_popup_overlay" t-if="state.back_popup">
+                        <div style="height:100%;">
+                            <div class="validate_popup_responsive">
+                                <h2 style="font-weight: 500; text-align:center;">Do you want to exit without saving</h2>
+                                <div>
+                                    <div style="display:flex; justify-content: space-evenly;margin-top: 20px;">
+                                        <button class="validate-popup-button-discard-responsive" t-on-click="discardBackButtonPopup">Discard</button>
+                                        <button class="validate-popup-button-responsive" t-on-click="backButton">Yes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+                <t>
+                    <div id="popup1" class="validate_popup_overlay" t-if="state.add_location_popup">
+                        <div style="height:100%;">
+                            <div class="validate_popup_responsive" style="text-align:center;">
+                                <h2 style="font-weight: 600; text-align:center;">Add Location</h2>
+                                <div>
+                                    <SelectAddDropDownLocation data="locations.locations_list" selected_item="locations.location" select_action="(selected_location)=>this.selectAddLocation(selected_location)" details="{icon_path:'/custom_barcode_app/static/src/img/icons8-warehouse-42.png', default_text:'Location'}" />
+                                </div>
+                                <div style="display:flex; justify-content: space-evenly;margin-top: 20px;">
+                                    <button class="validate-popup-button-discard-responsive" t-on-click="backLocationPopup">Discard</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+
+                <t t-if="state.edit_popup">
+
+                     <EditPopUpComponent1 back_button="()=>this.backButtonEditPopUp()" confirm_button="(display_value)=>this.editPopUpConfirmButton(display_value)"
+                                        edit_popup_part ="edit_popup_part.data" />
+                </t>
+
+                <t t-elif="state.add_products_popup">
+                    <AddProductsPopUp back_button="()=>this.backButtonAddProductPopup()" add_product="(selected_part, quantity)=>this.addProduct(selected_part, quantity)"/>
+                </t>
+                <t t-elif="state.go_back_screen">
+                        <div style="display:flex;text-align:center;background-color:#06516E;align-items: center; height:84px;">
+
+                        </div>
+                            <div>
+                                <div  style="text-align:center;background-color:#06516E;padding:1rem;border-top:2px solid white;">
+                                    <i class="fa fa-chevron-circle-left" style="color:white;font-size:5rem;" t-on-click="backButton"></i>
+                                    <p style="font-size:1.4rem;color:white;">Go Back</p>
+                                </div>
+                            </div>
+                    </t>
+                <t t-elif="state.scanning_display">
+                    <t t-if="picking.state == 'cancel'">
+                        <div style="display:flex;text-align:center;background-color:#06516E;align-items: center; height:84px;">
+                            <div t-on-click="backButton"
+                                 class="warehouse-operation-back-button-left">
+                                <i class="fa fa-angle-left"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div  style="text-align:center;background-color:#06516E;padding:1rem;border-top:2px solid white;">
+                                <i class="fa fa-exclamation-triangle" style="color:white;font-size:5rem;"></i>
+                                <p style="font-size:1.4rem;color:white;">This picking is cancelled</p>
+                            </div>
+                        </div>
+
+                    </t>
+                    <t t-elif="picking.state == 'done'">
+                        <div style="display:flex;text-align:center;background-color:#06516E;align-items: center; height:84px;">
+                            <div t-on-click="backButton"
+                                 class="warehouse-operation-back-button-left">
+                                <i class="fa fa-angle-left"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div  style="text-align:center;background-color:#06516E;padding:1rem;border-top:2px solid white;">
+                                <i class="fa fa-exclamation-triangle" style="color:white;font-size:5rem;"></i>
+                                <p style="font-size:1.4rem;color:white;">This picking is done</p>
+                            </div>
+                        </div>
+
+                    </t>
+                    <t t-elif="picking.state == 'assigned' or picking.state == 'confirmed' or picking.state == 'draft' or picking.state == 'waiting' ">
+                        <div style="display:flex;text-align:center;background-color:#06516E;align-items: center;min-height:84px;">
+                            <div style="display:flex;flex-wrap: wrap;  position:relative;flex: 1 1 auto; align-items:center;">
+                                    <div t-on-click="backButtonPopup"
+                                 class="warehouse-operation-back-button-left">
+                                         <i class="fa fa-angle-left"></i>
+                                    </div>
+                                <div style="margin: 7px;border-radius: 5px;display: flex;align-items: center; margin-right:auto;">
+                                        <h2 class="warehouse-operation-picking-name" ><t t-esc="picking.name"/></h2>
+                                </div>
+                                <div  class="location-tab-mobile  " style="margin: 7px 4px">
+                                        <div t-on-click="backPage" style=" align-items:center;display: flex;margin-right:3px;">
+                                            <button style="background-color:#CEEBEE;padding: 0.2rem 1.2rem;border-radius: 0.4rem;font-size: 2rem;border: 0;"><i class="fa fa-angle-left"></i></button>
+                                        </div>
+                                        <div style="align-items:center;display:flex;">
+                                            <h1 style="color:white;letter-spacing: 3px;font-weight: 600;"><t t-esc="state.current_page"/>/<t t-esc="state.total_pages"/></h1>
+                                        </div>
+                                        <div t-on-click="nextPage1" style="align-items:center;display: flex;margin-left:3px; ">
+                                            <button style="background-color:#CEEBEE;padding: 0.2rem 1.2rem;border-radius: 0.4rem;font-size: 2rem;border: 0;"><i class="fa fa-angle-right"></i></button>
+                                        </div>
+                                    </div>
+                                <div class="warehouse-operation-location-tab">
+                                    <div t-on-click="addLocationPopup" style="margin: 7px;align-items:center;display: flex;  ">
+                                        <button style="background-color:#CEEBEE;padding: 0.1rem 1rem;border-radius: 0.4rem;font-size: 2rem;border: 0;"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                    <div style="position:relative;display: flex;">
+                                        <div t-if="[operation_type].length>0 and operation_type.default_location_src_id" t-attf-style="color : black;margin: 7px;display: flex;align-items: center;">
+
+                                            <SelectDropDownLocationSrc data="child_src_locations" selected_item="state.src_locations[state.current_page-1]" select_action="(location)=>this.selectSrcLocation(location)" />
+                                        </div>
+
+                                        <div t-if="[operation_type].length>0 and operation_type.default_location_dest_id" t-attf-style=" color : black;margin: 7px;display: flex;align-items: center;">
+
+                                            <SelectDropDownLocationDest data="child_dest_locations" selected_item="state.dest_locations[state.current_page-1]" select_action="(location)=>this.selectDestLocation(location)" />
+                                        </div>
+                                    </div>
+                                    <div style="display:flex;" class="warehouse-operation-location-tab">
+                                        <div t-on-click="backPage" style="margin: 7px; align-items:center;display: flex;">
+                                            <button style="background-color:#CEEBEE;padding: 0.4rem 1rem;border-radius: 0.4rem;font-size: 2rem;border: 0;"><i class="fa fa-angle-left"></i></button>
+                                        </div>
+                                        <div style="align-items:center;display:flex;">
+                                            <h1 style="color:white;letter-spacing: 3px;font-weight: 600;"><t t-esc="state.current_page"/>/<t t-esc="state.total_pages"/></h1>
+                                        </div>
+                                        <div t-on-click="nextPage1" style="margin: 7px;align-items:center;display: flex;  ">
+                                            <button style="background-color:#CEEBEE;padding: 0.4rem 1rem;border-radius: 0.4rem;font-size: 2rem;border: 0;"><i class="fa fa-angle-right"></i></button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="location-tab-mobile">
+                                    <div style="" class="location-container">
+                                        <div t-if="[operation_type].length>0 and operation_type.default_location_src_id" class="location-select-container">
+
+                                            <SelectDropDownLocationSrc data="child_src_locations" selected_item="state.src_locations[state.current_page-1]" select_action="(location)=>this.selectSrcLocation(location)" />
+                                        </div>
+
+                                        <div t-if="[operation_type].length>0 and operation_type.default_location_dest_id" class="location-select-container">
+
+                                            <SelectDropDownLocationDest data="child_dest_locations" selected_item="state.dest_locations[state.current_page-1]" select_action="(location)=>this.selectDestLocation(location)" />
+                                        </div>
+                                    </div>
+                                    <div t-on-click="addLocationPopup" style="align-items: center;display: flex;margin-left:auto;">
+                                        <button style="background-color:#CEEBEE;padding: 0.1rem 1rem;border-radius: 0.4rem;font-size: 2rem;border: 0;"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                                </div>
+                       </div>
+
+                        <div style="background-color:#4EC1E0; text-align: center;padding: 0.15rem;">
+                                <p style="color:#06516e;margin: 0;font-size: 1.2rem;font-weight: 600;">Scan product or location</p>
+                        </div>
+
+                        <t t-if="state.display_parts.length == state.total_pages">
+                            <div style="height:100%;">
+                                <div style="height:100%;">
+                                    <div style="height:100%">
+                                        <div t-ref="barcodeLineBox" style="overflow-y :auto; height:100%;" >
+                                            <div t-ref="barcodeLine">
+                                                <t t-foreach="state.display_parts[state.current_page-1]" t-as="inventory_line" t-key="inventory_line_index" >
+
+                                                    <BarcodeLineTransferWarehouse inventory_line="inventory_line" image_url="(id, write_date)=>this.imageUrl(id, write_date)" edit_popup="(stock_move)=>this.editPopup(stock_move)" handle_click_total_quantity="(stock_move)=>this.handleClickTotalQuantity(stock_move)" handle_click_plus="(stock_move)=>this.handleClickPlus(stock_move)" handle_click_minus="(stock_move)=>this.handleClickMinus(stock_move)" change_is_select="(inventory_line)=>this.changeIsSelect(inventory_line)"  picking="picking"/>
+                                                </t>
+                                                <div style="height:70vh;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div style="height:40vh;">
+
+                                    </div>
+                                    </div>
+                                    <div style=" position:fixed;bottom: 0px;width: 100%;">
+                                        <button type="button" class="confirm-button" t-on-click="addProductPopup">Add Products</button>
+                                        <button type="button" t-on-click="validatePopUp"
+                                                        class="confirm-button">Validate</button>
+                                    </div>
+
+                            </div>
+                        </t>
+                </t>
+                <t t-else="">
+                    <div style="display:flex;text-align:center;background-color:#06516E;align-items: center; height:84px;">
+                            <div t-on-click="backButtonPopup"
+                                 style="color : white; padding: 0.1rem 2rem; font-size: 50px;">
+                                <i class="fa fa-angle-left"></i>
+                            </div>
+                       </div>
+                </t>
+            </t>
+        </div>
+     </t>
+
+    <t t-name="custom_barcode_app.BarcodeLineTransferWarehouse" owl="1">
+
+        <div class="warehouse-operation-barcode-line" t-attf-id="barcode_line_{{props.inventory_line.id}}"  t-on-click="()=>props.change_is_select(props.inventory_line)" t-attf-style="border:{{props.inventory_line.is_selected ? '4px solid ' : '4px solid transparent'}};background-color:{{props.inventory_line.genuine_stock_move? '#CEEBEE' : '#F7C6C5'}};margin: 0.5rem;font-family: 'Argentum Sans'; font-weight:500;">
+            <div>
+                <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                    <div style="display: flex; flex-wrap: nowrap;">
+                        <div style=" margin-right:10px; width:115px;height:80px;">
+                            <img t-attf-src="{{props.image_url(props.inventory_line.data.product_id,props.inventory_line.data.write_date)}}"
+                                             style="object-fit:contain;  max-height:80px; max-width:110px;"/>
+                        </div>
+                        <div style="">
+                            <p class="warehouse-operation-display-name" style="">
+                                <span t-esc="props.inventory_line.data.display_name"/>
+                            </p>
+                            <div style="font-size: 1.4rem; color: black; display:flex;flex-wrap: wrap;align-items: center;">
+                                <div style="margin-right:0.8rem;">
+                                <t>
+                                    <div t-if="props.inventory_line.data.reserved_uom_qty==0" style=" display:flex;">
+                                        <div style="padding: 2px 5px;background-color: #06516e;border-radius: 5px;color: white;border: 0.2rem solid #06516e; margin-right:5px;">
+                                            <span style="" t-esc="props.inventory_line.data.qty_done.toString().substring(0, 8)"/>
+                                        </div>
+<!--                                        <div style="padding: 2px 5px;background-color: #06516e;border-radius: 5px;color: white;border: 0.2rem solid #06516e;">-->
+<!--                                            <span style="font-size:1.1rem" t-esc="props.inventory_line.data.product_uom_id[1]"/>-->
+<!--                                        </div>-->
+                                    </div>
+                                    <div t-else="" style=" display:flex;">
+                                        <div style="padding: 2px 5px;background-color: #CEEBEE;border-radius: 5px 0px 0px 5px;color: black;border: 0.2rem solid;border-right: 0;">
+                                            <span style="" t-esc="props.inventory_line.data.qty_done.toString().substring(0, 8)"/>
+                                        </div>
+                                        <div style="padding: 2px 5px;background-color: #06516e;border-radius: 0px 5px 5px 0px;color: white;border: 0.2rem solid #06516e;border-left: 0; margin-right:5px;">
+                                            <!--<span style="" t-esc="props.inventory_line.data.reserved_uom_qty"/>-->
+                                            <span t-if="props.inventory_line.data.demand_qty>0">Demand: </span>
+                                            <span t-if="props.inventory_line.data.demand_qty>0" style="" t-esc="props.inventory_line.data.demand_qty"/>
+                                            <span t-else="" style="" t-esc="props.inventory_line.data.reserved_uom_qty"/>
+                                            
+                                        </div>
+<!--                                        <div style="padding: 2px 5px;background-color: #06516e;border-radius: 5px;color: white;border: 0.2rem solid #06516e;">-->
+<!--                                            <span style="font-size:1.1rem" t-esc="props.inventory_line.data.product_uom_id[1]"/>-->
+<!--                                        </div>-->
+                                    </div>
+                                </t>
+                                </div>
+                                <div t-if="props.inventory_line.data.expiration_date" style="display:flex;align-items: center;padding: 0.8rem 0rem;">
+                                    <i style="margin-right:0.3rem;line-height: 0;" class="fa fa-calendar"></i>
+                                    <span style="white-space: nowrap; font-size:1.2rem;" t-esc="props.inventory_line.data.expiration_date"/>
+                                </div>
+                                <div t-if="props.inventory_line.data.lot_id" style="display:flex;align-items: center;padding: 0.8rem 0rem;">
+                                    <i style="margin-right:0.3rem;line-height: 0;" class="fa fa-archive"></i>
+                                    <span style="white-space: nowrap; font-size:1.2rem;" t-esc="props.inventory_line.data.lot_id[1]"/>
+                                </div>
+                            </div>
+
+                        </div>
+                </div>
+                <div style="" class="button-panel-warehouse">
+                    <div style="display: flex;align-items: center; justify-content: right;">
+                        <button type="button" class="line-button" t-on-click="()=> props.edit_popup(props.inventory_line)"><i style="" class="fa fa-2x fa-pencil"/></button>
+                    </div>
+                    <t t-if="props.inventory_line.is_selected">
+                        <t t-if="props.inventory_line.genuine_stock_move">
+                            <!--
+                            <t t-if="props.picking.immediate_transfer">
+                                <div style="display: flex;align-items: center; justify-content: right;">
+                                    <button type="button" class="line-button" t-on-click="()=>props.handle_click_minus(props.inventory_line)">-1</button>
+                                    <button type="button" class="line-button" t-on-click="()=>props.handle_click_plus(props.inventory_line)">+1</button>
+                                </div>
+                            </t>
+                            <t t-elif="!props.picking.immediate_transfer">
+                            -->
+                            <t>
+                                <div t-if="(props.inventory_line.data.reserved_uom_qty-props.inventory_line.data.qty_done) > 0" style="display: flex;align-items: center; justify-content: right;">
+                                    <button type="button" class="line-button" t-on-click="()=>props.handle_click_minus(props.inventory_line)">-1</button>
+                                    <button type="button" class="line-button" t-on-click="()=>props.handle_click_plus(props.inventory_line)">+1</button>
+                                    <button type="button" class="line-button" style="word-wrap: break-word;"  t-on-click="()=>props.handle_click_total_quantity(props.inventory_line)"><span t-if="(props.inventory_line.data.reserved_uom_qty-props.inventory_line.data.qty_done) >= 0">+</span><span t-esc="(props.inventory_line.data.reserved_uom_qty-props.inventory_line.data.qty_done).toString().substring(0, 5)" ></span></button>
+                                </div>
+                            </t>
+                        </t>
+                        <t t-elif="!props.inventory_line.genuine_stock_move">
+                            <div style="display: flex;align-items: center; justify-content: right;">
+                                <button type="button" class="line-button" t-on-click="()=>props.handle_click_minus(props.inventory_line)">-1</button>
+                                <button type="button" class="line-button" t-on-click="()=>props.handle_click_plus(props.inventory_line)">+1</button>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+            </div>
+
+            </div>
+        </div>
+    </t>
+
+
+ </templates>

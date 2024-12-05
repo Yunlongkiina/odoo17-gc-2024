@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap');
+
+        * {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .wrapper {
+            width: 100%;
+        }
+
+        .tabs ul {
+            display: flex;
+            flex-wrap: wrap;
+            background: #fbfbfb;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            margin-bottom: 25px;
+            padding: 0;
+        }
+
+        .tabs ul li {
+            width: 20%;
+            padding: 15px;
+            min-width: 150px;
+            border-right: 1px solid #dddddd;
+            text-align: center;
+            color: #3b3b3b;
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+
+        }
+
+        .tabs ul li .icon {
+            font-size: 20px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        .tabs ul li:last-child {
+            border-right: 0px;
+        }
+
+        .tabs ul li:before {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #028f68;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        .tabs ul li:hover,
+        .tabs ul li.active {
+            background: #e8f5f1;
+            color: #028f68;
+        }
+
+        .tabs ul li:hover:before,
+        .tabs ul li.active:before {
+            opacity: 1;
+        }
+
+        .content {
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+        }
+
+        .tab_wrap .title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .tab_wrap .tab_content p {
+            font-size: 14px;
+            line-height: 22px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="position-relative mb-4" style="border-radius:10px;background-color: #F0FDFF; margin-bottom: 20px;">
+    <div class="p-md-5 p-3 position-relative">
+        <div class="row">
+            <div class=" col-md-12">
+                <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                    <span style="color:#06516E; font-size:calc(1.1rem + 1vw)">Barcode</span>
+                    <span style="color:#333333; font-size:calc(1.1rem + 1vw)"> App</span>
+                </h1>
+            </div>
+            <div class=" text-center">
+                <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                    Inside your warehouse it is hard to enter items manually to create a transfer or to validate a
+                    purchase order delivery order etc. That is when the barcode scanning is come into play. If you can
+                    do all the work with barcodes it is much more easier and error free. So this is the ultimate
+                    solution.You can use this barcode app to create transfers, Validate warehouse operations, Inventory
+                    adjustments, View Product details.Refer to the tutorial for more details
+                </p>
+                <img src="front-page.png" alt="" style="width: 100%;margin-bottom: 1rem;">
+                <!--                <img src="product-info-screen.png" alt="" style="width: 100%">-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div style="border-radius:8px;background-color: #06516e;margin-left:30px;margin-right:30px;margin-top: 5rem">
+    <h1 style="color:#ffffff;text-align: center;padding: 10px">Features and Functions</h1>
+</div>
+
+<div class="wrapper">
+    <nav class="nav nav-pills nav-justified" style="margin-bottom: 2rem">
+        <a class="nav-item nav-link active" id="create-transfer-tab" data-toggle="tab" href="#create-transfer" role="tab" aria-controls="create-transfer" aria-selected="true">Create Transfer</a>
+        <a class="nav-item nav-link" id="warehouse-operation-tab" data-toggle="tab" href="#warehouse-operation" role="tab" aria-controls="warehouse-operation" aria-selected="false">Warehouse Operation</a>
+        <a class="nav-item nav-link" id="product-info-tab" data-toggle="tab" href="#product-info" role="tab" aria-controls="product-info" aria-selected="false">Product Info</a>
+        <a class="nav-item nav-link" id="inventory-adjustment-tab" data-toggle="tab" href="#inventory-adjustment" role="tab" aria-controls="inventory-adjustment" aria-selected="false">Inventory Adjustment</a>
+        <a class="nav-item nav-link" id="support-tab" data-toggle="tab" href="#support" role="tab" aria-controls="support" aria-selected="false">Support</a>
+    </nav>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="create-transfer" role="tabpanel" aria-labelledby="create-transfer-tab">
+            <div class="tab_wrap">
+                <div class="tab_content">
+                    <div style="text-align: center;">
+                        <div class="position-relative mb-4" style="border-radius:10px;background-color: #F0FDFF;">
+                            <div class="p-md-5 p-3 position-relative">
+                                <div class="row">
+                                    <div class=" col-md-12">
+                                        <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                            <span style="color:#06516E; font-size:calc(1.1rem + 1vw)">Create Warehouse</span>
+                                            <span style="color:#333333; font-size:calc(1.1rem + 1vw)"> Transfer</span>
+                                        </h1>
+                                    </div>
+                                    <div class=" text-center">
+                                        <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                                            When you create a delivery order ,internal transfer or receipt it takes lot of
+                                            time to enter products by hand one by one.This is the ultimate solution
+                                            You no need to select product and do one by one.scan the the location and scan
+                                            the items and you are done!. creat transfers from multiple locations. Scan the
+                                            location
+                                            and scan the product. This module automatically select the location and add the
+                                            product for you.
+                                        </p>
+                                        <img src="Create%20Transfer/main%20image%20done.png" alt=""
+                                             style="width: 100%;margin-bottom: 1rem;">
+                                        <img src="product-info-screen.png" alt="" style="width: 100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="position-relative mb-4" style="border-radius:10px;background-color: #F0FDFF;">
+                            <div class="p-md-5 p-3 position-relative">
+                                <div class="row">
+                                    <div class=" col-md-12">
+                                        <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                            <span style="color:#06516E; font-size:calc(1.1rem + 1vw)">Add products and change quantity</span>
+                                            <span style="color:#333333; font-size:calc(1.1rem + 1vw)">by barcode scanner</span>
+                                        </h1>
+                                    </div>
+                                    <div class="text-center">
+                                        <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                                            Use the barcode scanner to change the scanned quantity of the product or scan a
+                                            new product to
+                                            add them to the stock transfer.
+                                        </p>
+                                        <img src="Create%20Transfer/addImage.gif" alt="" style="width: 100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="position-relative mb-4" style="border-radius:10px;background-color: #F0FDFF;">
+                            <div class="p-md-5 p-3 position-relative">
+                                <div class="row">
+                                    <div class=" col-md-12">
+                                        <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                            <span style="color:#06516E; font-size:calc(1.1rem + 1vw)">Create stock adjustments</span>
+                                            <span style="color:#333333; font-size:calc(1.1rem + 1vw)">to multiple locations </span>
+                                        </h1>
+                                    </div>
+                                    <div class="text-center">
+                                        <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                                            Scan the barcode of the location or use location selector to change or to select
+                                            new location
+                                        </p>
+                                        <img src="Create%20Transfer/multiple-locations.gif" alt=""
+                                             style="width: 100%;margin-bottom: 1rem">
+                                        <img src="location%20selector.png" alt="" style="width: 100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="position-relative mb-4" style="border-radius:10px;background-color: #F0FDFF;">
+                            <div class="p-md-5 p-3 position-relative">
+                                <div class="row">
+                                    <div class=" col-md-12">
+                                        <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                            <span style="color:#06516E; font-size:calc(1.1rem + 1vw)">Add Product Manually </span>
+                                            <span style="color:#333333; font-size:calc(1.1rem + 1vw)">With A Simple Search </span>
+                                        </h1>
+                                    </div>
+                                    <div class="text-center">
+                                        <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                                            Sometimes the product barcodes are damaged. In those time you might need to
+                                            search the product
+                                            and add the product manuallay to the stock adjustment. It is easier than ever
+                                            with the real time
+                                            updating search bar.Search by internal reference, barcode or using the name. You
+                                            can select the
+                                            quantity through the special keyboard
+                                        </p>
+                                        <img src="Create%20Transfer/add-products.gif" alt=""
+                                             style="width: 100%;margin-bottom: 1rem">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="warehouse-operation" role="tabpanel" aria-labelledby="warehouse-operation-tab">
+            <div class="tab_wrap" >
+                <div class="tab_content">
+                    <div style="text-align: center;">
+                        <div class="position-relative mb-4" style="border-radius:10px;background-color: #F0FDFF;">
+                            <div class="p-md-5 p-3 position-relative">
+                                <div class="row">
+                                    <div class=" col-md-12">
+                                        <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                            <span style="color:#06516E; font-size:calc(1.1rem + 1vw)">Warehouse
+                                            </span>
+                                            <span style="color:#333333; font-size:calc(1.1rem + 1vw)"> Operations</span>
+                                        </h1>
+                                    </div>
+                                    <div class=" text-center">
+                                        <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                                            When you receive purchase order or prepare a delivery order you need to validate
+                                            the products quantity you send. This time warehouse operation function is a life
+                                            savor. This helps to reduce inventory errors. This will help your business to
+                                            deliver correct products to your customer.
+                                        </p>
+                                        <img src="warehouse%20operations/main%20image.png" alt=""
+                                             style="width: 100%;margin-bottom: 1rem;">
+                                        <!--                                    <img src="inventory%20Adjustment/product-info-screen.png" alt=""-->
+                                        <!--                                         style="width: 100%">-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="position-relative mb-4" style="border-radius:10px;background-color: #F0FDFF;">
+                            <div class="p-md-5 p-3 position-relative">
+                                <div class="row">
+                                    <div class=" col-md-12">
+                                        <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                            <span style="color:#06516E; font-size:calc(1.1rem + 1vw)">Add products and change Counted </span>
+                                            <span style="color:#333333; font-size:calc(1.1rem + 1vw)">quantity by barcode scanner</span>
+                                        </h1>
+                                    </div>
+                                    <div class="text-center">
+                                        <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                                            Use the barcode scanner to change the counted quantity of the product or scan a
+                                            new product to
+                                            add them to the warehouse operation. If user add new product to the operation it will
+                                            shown in red line because the that product was unexpected in the operation.
+                                        </p>
+                                        <img src="warehouse%20operations/add-product-done.gif" alt="" style="width: 100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="position-relative mb-4" style="border-radius:10px;background-color: #F0FDFF;">
+                            <div class="p-md-5 p-3 position-relative">
+                                <div class="row">
+                                    <div class=" col-md-12">
+                                        <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                            <span style="color:#06516E; font-size:calc(1.1rem + 1vw)">Handle multiple </span>
+                                            <span style="color:#333333; font-size:calc(1.1rem + 1vw)">Locations</span>
+                                        </h1>
+                                    </div>
+                                    <div class="text-center">
+                                        <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                                            When you receive a purchase order or while preparing delivery order you may need to pick products from multiple locations.For that
+                                            scan the barcode of the location or use location selector to change or to select
+                                            new location
+                                        </p>
+                                        <img src="warehouse%20operations/multiple-locations-done.gif" alt=""
+                                             style="width: 100%;margin-bottom: 1rem">
+                                        <!--                                    <img src="inventory%20Adjustment/location%20selector.png" alt=""-->
+                                        <!--                                         style="width: 100%">-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="position-relative mb-4" style="border-radius:10px;background-color: #F0FDFF;">
+                            <div class="p-md-5 p-3 position-relative">
+                                <div class="row">
+                                    <div class=" col-md-12">
+                                        <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                            <span style="color:#06516E; font-size:calc(1.1rem + 1vw)">Add Product Manually </span>
+                                            <span style="color:#333333; font-size:calc(1.1rem + 1vw)">With A Simple Search </span>
+                                        </h1>
+                                    </div>
+                                    <div class="text-center">
+                                        <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                                            Sometimes the product barcodes are damaged. In those time you might need to
+                                            search the product
+                                            and add the product manually to the operation. It is easier than ever
+                                            with the real time
+                                            updating search bar.Search by internal reference, barcode or using the name. You
+                                            can select the
+                                            quantity through the special keyboard
+                                        </p>
+                                        <img src="warehouse%20operations/manual-prodcut-add-done.gif" alt=""
+                                             style="width: 100%;margin-bottom: 1rem">
+                                        <img src="inventory%20Adjustment/add%20product.png" alt="" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="position-relative mb-4" style="border-radius:10px;background-color: #F0FDFF;">
+                            <div class="p-md-5 p-3 position-relative">
+                                <div class="row">
+                                    <div class=" col-md-12">
+                                        <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                            <span style="color:#06516e; font-size:calc(1.1rem + 1vw)">Smart Button </span>
+                                            <span style="color:#333333; font-size:calc(1.1rem + 1vw)">Panel</span>
+                                        </h1>
+                                    </div>
+                                    <div class="text-center">
+                                        <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                                            To change the product quantity manually this module gives you smart button
+                                            panel. This panel
+                                            allows you to
+                                        <ol style="text-align: left">
+                                            <li>Edit quantity and view product details</li>
+                                            <li>Add one to the product quantity</li>
+                                            <li>Remove one to the product quantity</li>
+                                            <li>Equalize the demanded quantity and scanned quantity</li>
+                                        </ol>
+
+                                        </p>
+                                        <img src="warehouse%20operations/smart%20button%20done.png" alt=""
+                                             style="width: 100%;margin-bottom: 1rem">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="product-info" role="tabpanel" aria-labelledby="product-info-tab">
+            <div class="tab_wrap">
+                <div style="text-align: center;">
+                    <div class="position-relative mb-4"
+                         style="border-radius:10px;background-color: #F0FDFF;padding: 3rem !important;">
+                        <div class=" position-relative">
+                            <div class="row">
+                                <div class=" col-md-12">
+                                    <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                            <span style="color:#06516E; font-size:calc(1.1rem + 1vw)">Product
+                                            </span>
+                                        <span style="color:#333333; font-size:calc(1.1rem + 1vw)"> Information Viewer</span>
+                                    </h1>
+                                </div>
+                                <div class="text-center">
+                                    <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                                        Salespersons and warehouse managers mostly work with a single location. You need to
+                                        know stock
+                                        data to each location with ease.That is why integrated Odoo stocks levels are
+                                        hard to use. Surely, you have to push a few buttons, apply groupings and filters to
+                                        retrieve
+                                        required product information. However, is it comfortable? Hardly. Moreover, it is
+                                        confusing
+                                        since sudden misunderstanding leads to customer dissatisfaction. So, you need a tool
+                                        to provide
+                                        essential inventory data and price details at a glance. Here it comes!.This app
+                                        allows you to
+                                        see the all the details about your product in one click.scan the barcode or use
+                                        advance realtime
+                                        search bar to select the product
+
+                                    </p>
+                                    <img src="product%20info/product%20view.gif" alt=""
+                                         style="width: 100%;margin-bottom: 1rem;">
+                                    <img src="product%20info/product-info-screen.png" alt="" style="width: 100%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin: 3rem 1rem;border-radius:10px;background-color: #F0FDFF;padding: 3rem !important;">
+
+                        <h1 style=" font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; color: #06516E">
+                            Features</h1>
+
+                        <p style=" font-weight:600; font-size:20px;">Search the product easily from <strong>Internal
+                            Reference</strong>
+                            <strong>Name</strong> or
+                            <strong>Barcode</strong></p>
+                        <p style=" font-weight:600; font-size:20px;">Realtime updating search bar</p>
+                        <p style=" font-weight:600; font-size:20px;">Advance stock details table with filters</p>
+                        <p style=" font-weight:600; font-size:20px;">Cost and Price table</p>
+                        <p style=" font-weight:600; font-size:20px;">Supplier and Additional details table</p>
+                        <p style=" font-weight:600; font-size:20px;">no configurations.Install and use</p>
+
+                    </div>
+
+                    <div class="position-relative mb-4"
+                         style="border-radius:10px;background-color: #F0FDFF;padding: 3rem !important;">
+                        <div class="position-relative">
+                            <div class="row">
+                                <div class=" col-md-12">
+                                    <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                        <span style="color:#06516E; font-size:calc(1.1rem + 1vw)">Barcode Scan </span>
+                                        <span style="color:#333333; font-size:calc(1.1rem + 1vw)">To Search Product</span>
+                                    </h1>
+                                </div>
+                                <div class="text-center">
+                                    <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                                        Scan the product barcode to search the product.
+                                    </p>
+                                    <img src="product%20info/barcode%20scan.gif" alt="" style="width: 100%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="position-relative mb-4"
+                         style="border-radius:10px;background-color: #F0FDFF;padding: 3rem !important;">
+                        <div class="position-relative">
+                            <div class="row">
+                                <div class=" col-md-12">
+                                    <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                        <span style="color:#06516E; font-size:calc(1.1rem + 1vw)">Realtime Updating </span>
+                                        <span style="color:#333333; font-size:calc(1.1rem + 1vw)">Search Bar</span>
+                                    </h1>
+                                </div>
+                                <div class="text-center">
+                                    <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                                        Search the product by <strong>Internal Reference</strong> <strong>Name</strong> or
+                                        <strong>Barcode</strong> Search bar updates realtime to ease the search.
+                                    </p>
+                                    <img src="product%20info/search%20bar%20gif.gif" alt=""
+                                         style="width: 100%;margin-bottom: 1rem">
+                                    <img src="product%20info/search%20bar%20internal.gif" alt="" style="width: 100%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="position-relative mb-4"
+                         style="border-radius:10px;background-color: #F0FDFF;padding: 3rem !important;">
+                        <div class="position-relative">
+                            <div class="row">
+                                <div class=" col-md-12">
+                                    <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                        <span style="color:#06516E; font-size:calc(1.1rem + 1vw)">Advance stock </span>
+                                        <span style="color:#333333; font-size:calc(1.1rem + 1vw)">details table</span>
+                                    </h1>
+                                </div>
+                                <div class="text-center">
+                                    <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                                        This table allows to see your inventory stock in warehouses and internal locations.
+                                    </p>
+                                    <img src="product%20info/stock-table.png" alt="" style="width: 100%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="inventory-adjustment" role="tabpanel" aria-labelledby="inventory-adjustment-tab">
+            <div class="tab_wrap" >
+                <div class="tab_content">
+                    <div style="text-align: center;">
+                        <div class="position-relative mb-4" style="border-radius:10px;background-color: #F0FDFF;">
+                            <div class="p-md-5 p-3 position-relative">
+                                <div class="row">
+                                    <div class=" col-md-12">
+                                        <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                            <span style="color:#06516E; font-size:calc(1.1rem + 1vw)">Inventory
+                                            </span>
+                                            <span style="color:#333333; font-size:calc(1.1rem + 1vw)"> Adjustment</span>
+                                        </h1>
+                                    </div>
+                                    <div class=" text-center">
+                                        <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                                            Do you want to scan Barcode with ease? Do your time wasting in Stock Adjustment
+                                            operations by manual product selection ? So here is the solutions this modules
+                                            useful do quick
+                                            operations of Stock Adjustments using Barcode scanner. You no need to select
+                                            product
+                                            and do one by one. scan it and you done!. Adjust stock in multiple locations.
+                                            Scan the location
+                                            and scan the product. This module automatically select the location and add the
+                                            product
+                                        </p>
+                                        <img src="inventory%20Adjustment/inventory%20adjustment%20view.png" alt=""
+                                             style="width: 100%;margin-bottom: 1rem;">
+                                        <img src="inventory%20Adjustment/product-info-screen.png" alt=""
+                                             style="width: 100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-4" style="background-color: #f0fdff;">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="sh_spaced" style="width:100%">
+                                        <div class="sh_span12 " style="padding:0px 15px!important;margin: 20px 0px;">
+                                            <h1 style="font-family: 'Inter', sans-serif;font-weight: 600;font-size: calc(1.1rem + 1vw);line-height: 120%;text-align: center;text-transform: capitalize; color: #06516e">
+                                                Features</h1>
+
+                                            <p class="sh_mb32" align="center"
+                                               style="color:#342f33e0; font-family:sans-serif!important; padding-top:10px; margin-bottom:0px !important; text-align:justify; padding:7px 0px; border-bottom:1px solid #bbbbbb">
+                                                <i class="fa fa-hand-o-right"
+                                                   style="margin-right:1em; color:#1678b9; font-size:1.4em"></i>
+                                                <b>Easy to add products and change quantity in inventory adjustment by
+                                                    barcode scanner</b>
+                                            </p>
+                                            <p class="sh_mb32" align="center"
+                                               style="color:#342f33e0; font-family:sans-serif!important; padding-top:10px; margin-bottom:0px !important; text-align:justify; padding:7px 0px; border-bottom:1px solid #bbbbbb">
+                                                <i class="fa fa-hand-o-right"
+                                                   style="margin-right:1em; color:#1678b9; font-size:1.4em"></i>
+                                                Easy to change location in inventory adjustment by barcode scanner.
+                                            </p>
+                                            <p class="sh_mb32" align="center"
+                                               style="color:#342f33e0; font-family:sans-serif!important; padding-top:10px; margin-bottom:0px !important; text-align:justify; padding:7px 0px; border-bottom:1px solid #bbbbbb">
+                                                <i class="fa fa-hand-o-right"
+                                                   style="margin-right:1em; color:#1678b9; font-size:1.4em"></i>
+                                                Create stock adjustments to <strong>multiple locations</strong> in single
+                                                session
+                                            </p>
+                                            <p class="sh_mb32" align="center"
+                                               style="color:#342f33e0; font-family:sans-serif!important; padding-top:10px; margin-bottom:0px !important; text-align:justify; padding:7px 0px; border-bottom:1px solid #bbbbbb">
+                                                <i class="fa fa-hand-o-right"
+                                                   style="margin-right:1em; color:#1678b9; font-size:1.4em"></i>
+                                                Add <strong>product manually</strong> with a simple search using realtime
+                                                updating search
+                                                bar.
+                                            </p>
+                                            <p class="sh_mb32" align="center"
+                                               style="color:#342f33e0; font-family:sans-serif!important; padding-top:10px; margin-bottom:0px !important; text-align:justify; padding:7px 0px; border-bottom:1px solid #bbbbbb">
+                                                <i class="fa fa-hand-o-right"
+                                                   style="margin-right:1em; color:#1678b9; font-size:1.4em"></i>
+                                                Barcodes eliminate the possibility of human error.
+                                            </p>
+                                            <p class="sh_mb32" align="center"
+                                               style="color:#342f33e0; font-family:sans-serif!important; padding-top:10px; margin-bottom:0px !important; text-align:justify; padding:7px 0px; border-bottom:1px solid #bbbbbb">
+                                                <i class="fa fa-hand-o-right"
+                                                   style="margin-right:1em; color:#1678b9; font-size:1.4em"></i>
+                                                No special configuration required, install it, use it.
+                                            </p>
+                                            <p class="sh_mb32" align="center"
+                                               style="color:#342f33e0; font-family:sans-serif!important; padding-top:10px; margin-bottom:0px !important; text-align:justify; padding:7px 0px; border-bottom:1px solid #bbbbbb">
+                                                <i class="fa fa-hand-o-right"
+                                                   style="margin-right:1em; color:#1678b9; font-size:1.4em"></i>
+                                                It reduces human efforts.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="position-relative mb-4" style="border-radius:10px;background-color: #F0FDFF;">
+                            <div class="p-md-5 p-3 position-relative">
+                                <div class="row">
+                                    <div class=" col-md-12">
+                                        <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                            <span style="color:#06516E; font-size:calc(1.1rem + 1vw)">Add products and change quantity</span>
+                                            <span style="color:#333333; font-size:calc(1.1rem + 1vw)">by barcode scanner</span>
+                                        </h1>
+                                    </div>
+                                    <div class="text-center">
+                                        <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                                            Use the barcode scanner to change the scanned quantity of the product or scan a
+                                            new product to
+                                            add them to the stock adjustment. If user add new product to the inventory
+                                            adjustment it will
+                                            shown in red line because the that product was not assigned to the user
+                                        </p>
+                                        <img src="inventory%20Adjustment/scan%20product.gif" alt="" style="width: 100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="position-relative mb-4" style="border-radius:10px;background-color: #F0FDFF;">
+                            <div class="p-md-5 p-3 position-relative">
+                                <div class="row">
+                                    <div class=" col-md-12">
+                                        <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                            <span style="color:#06516E; font-size:calc(1.1rem + 1vw)">Create stock adjustments</span>
+                                            <span style="color:#333333; font-size:calc(1.1rem + 1vw)">to multiple locations </span>
+                                        </h1>
+                                    </div>
+                                    <div class="text-center">
+                                        <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                                            Scan the barcode of the location or use location selector to change or to select
+                                            new location
+                                        </p>
+                                        <img src="inventory%20Adjustment/location%20change.gif" alt=""
+                                             style="width: 100%;margin-bottom: 1rem">
+                                        <img src="inventory%20Adjustment/location%20selector.png" alt=""
+                                             style="width: 100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="position-relative mb-4" style="border-radius:10px;background-color: #F0FDFF;">
+                            <div class="p-md-5 p-3 position-relative">
+                                <div class="row">
+                                    <div class=" col-md-12">
+                                        <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                            <span style="color:#06516E; font-size:calc(1.1rem + 1vw)">Add Product Manually </span>
+                                            <span style="color:#333333; font-size:calc(1.1rem + 1vw)">With A Simple Search </span>
+                                        </h1>
+                                    </div>
+                                    <div class="text-center">
+                                        <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                                            Sometimes the product barcodes are damaged. In those time you might need to
+                                            search the product
+                                            and add the product manuallay to the stock adjustment. It is easier than ever
+                                            with the real time
+                                            updating search bar.Search by internal reference, barcode or using the name. You
+                                            can select the
+                                            quantity through the special keyboard
+                                        </p>
+                                        <img src="inventory%20Adjustment/add%20product.gif" alt=""
+                                             style="width: 100%;margin-bottom: 1rem">
+                                        <img src="inventory%20Adjustment/add%20product.png" alt="" style="width: 100%;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="position-relative mb-4" style="border-radius:10px;background-color: #F0FDFF;">
+                            <div class="p-md-5 p-3 position-relative">
+                                <div class="row">
+                                    <div class=" col-md-12">
+                                        <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                            <span style="color:#06516e; font-size:calc(1.1rem + 1vw)">Smart Button </span>
+                                            <span style="color:#333333; font-size:calc(1.1rem + 1vw)">Panel</span>
+                                        </h1>
+                                    </div>
+                                    <div class="text-center">
+                                        <p style="font-family:Inter; font-weight:500; font-size:20px; line-height:150%; letter-spacing:0.02em; color:#535456">
+                                            To change the product quantity manually this module gives you smart button
+                                            panel. This panel
+                                            allows you to
+                                        <ol style="text-align: left">
+                                            <li>Edit quantity and view product details</li>
+                                            <li>To change the whether inventory quantity is set. If button is not selected
+                                                the change will
+                                                not apply
+                                            </li>
+                                            <li>Add one to the product quantity</li>
+                                            <li>Remove one to the product quantity</li>
+                                            <li>Equalize the counted quantity and scanned quantity</li>
+                                        </ol>
+
+                                        </p>
+                                        <img src="inventory%20Adjustment/smart%20button%20panel.png" alt=""
+                                             style="width: 100%;margin-bottom: 1rem">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="support" role="tabpanel" aria-labelledby="support-tab">
+            <div class="tab_wrap" >
+                <div class="tab_content">
+                    <div class="position-relative mb-4"
+                         style="border-radius:10px;background-color: #F0FDFF;padding: 3rem !important;">
+                        <div class="position-relative">
+                            <div class="row">
+                                <div class=" col-md-12">
+                                    <h1 style="font-family:'Inter', sans-serif; font-weight:600; font-size:calc(1.1rem + 1vw); line-height:120%; text-align:center; text-transform:capitalize">
+                                        <span style="color:#06516E; font-size:calc(1.1rem + 1vw)">If you have any problem please contact us</span>
+                                    </h1>
+                                </div>
+                                <div class="text-center">
+                                    <h3>Email:niroshlakshan2@gmail.com</h3>
+                                    <h3>Whatsapp:+94775882349</h3>
+                                    <h3 style="color: crimson">Please make sure to reboot the server and restart the service
+                                        after
+                                        installation</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+    <t t-name="custom_barcode_app.SelectDropDownLocationSrc" owl="1">
+
+        <div t-if="props.selected_item" t-attf-style="font-family: 'Argentum Sans';text-align:left;background-color:{{props.selected_item[2] ? '#CEEBEE' : '#4EC1E0' }}; width:100%;border-radius: 0.4rem;" t-ref="root_select_src_location">
+            <div t-on-click="clickDropDown" class="dropdown-location-div" style="display: flex;align-items: center;" >
+                <div class="dropdown-location-warehouse-image">
+                    <img t-attf-src="{{'/custom_barcode_app/static/src/img/warehouse-alt.svg'}}" style="width: 3.5rem;margin-right:0.41rem;"/>
+                </div>
+                <div>
+                    <div class="dropdown-location-warehouse-title">
+                        <h2 style="font-weight: 500;font-size: 1rem;">From</h2>
+                    </div>
+                    <div >
+                        <h2 class="dropdown-location-warehouse-name"><t t-esc="props.selected_item[1]"/></h2>
+                    </div>
+                </div>
+
+            </div>
+            <div t-if="state.list_visible and props.data.length>0" class="dropdown-location-list" t-attf-style="left:0;width: max-content; min-width:200px;">
+                <ul>
+                    <t t-foreach="props.data" t-as="i" t-key="i_index">
+                        <li t-on-click="()=> this.handleListClick(i)"><img t-attf-src="{{'/custom_barcode_app/static/src/img/warehouse-alt.svg'}}" style="width:1.5rem;margin-right:0.41rem;"/><span t-esc="i[1]"/></li>
+                    </t>
+                </ul>
+            </div>
+
+        </div>
+
+        <div t-else="" t-attf-style="font-family: 'Argentum Sans';text-align:left;background-color:#CEEBEE; width:100%;border-radius: 0.4rem;">
+             <div t-on-click="clickDropDown" class="dropdown-location-div" style="display: flex;align-items: center;" >
+                <div class="dropdown-location-warehouse-image">
+                    <img t-attf-src="{{'/custom_barcode_app/static/src/img/warehouse-alt.svg'}}" style="width: 3.5rem;margin-right:0.41rem;"/>
+                </div>
+                <div>
+                    <div class="dropdown-location-warehouse-title">
+                        <h2 style="font-weight: 500;font-size: 1rem;">From</h2>
+                    </div>
+                    <div>
+                        <h2 class="dropdown-location-warehouse-name"><span>Src Location</span></h2>
+                    </div>
+                </div>
+
+            </div>
+
+            <div t-if="state.list_visible and props.data.length>0" class="dropdown-location-list" t-attf-style="left:0;width: max-content; min-width:200px;">
+                <ul>
+                    <t t-foreach="props.data" t-as="i" t-key="i_index">
+                        <li t-on-click="()=>this.handleListClick(i)"><img t-attf-src="{{'/custom_barcode_app/static/src/img/warehouse-alt.svg'}}" style="width:1.5rem;margin-right:0.41rem;"/><span t-esc="i[1]"/></li>
+                    </t>
+                </ul>
+            </div>
+
+        </div>
+     </t>
+
+        <t t-name="custom_barcode_app.SelectDropDownLocationDest" owl="1">
+
+        <div t-if="props.selected_item" t-attf-style="font-family: 'Argentum Sans';text-align:left;background-color:{{props.selected_item[2] ? '#CEEBEE' : '#4EC1E0' }}; width:100%;border-radius: 0.4rem;" t-ref="root_select_dest_location">
+            <div t-on-click="clickDropDown" class="dropdown-location-div" style="display: flex;align-items: center;" >
+                <div class="dropdown-location-warehouse-image">
+                    <img t-attf-src="{{'/custom_barcode_app/static/src/img/warehouse-alt.svg'}}" style="width: 3.5rem;margin-right:0.41rem;"/>
+                </div>
+                <div>
+                    <div class="dropdown-location-warehouse-title">
+                        <h2 style="font-weight: 500;font-size: 1rem;">To</h2>
+                    </div>
+                    <div>
+                        <h2 class="dropdown-location-warehouse-name"><t t-esc="props.selected_item[1]"/></h2>
+                    </div>
+                </div>
+
+            </div>
+            <div t-if="state.list_visible and props.data.length>0" class="dropdown-location-list" t-attf-style="right:0;width: max-content; min-width:200px;">
+                <ul>
+                    <t t-foreach="props.data" t-as="i" t-key="i_index">
+                        <li t-on-click="()=> this.handleListClick(i)"><img t-attf-src="{{'/custom_barcode_app/static/src/img/warehouse-alt.svg'}}" style="width:1.5rem;margin-right:0.41rem;"/><span t-esc="i[1]"/></li>
+                    </t>
+                </ul>
+            </div>
+
+        </div>
+
+        <div t-else="" t-attf-style="font-family: 'Argentum Sans';text-align:left;background-color:#CEEBEE; width:100%;border-radius: 0.4rem;">
+             <div t-on-click="clickDropDown" class="dropdown-location-div" style="display: flex;align-items: center;" >
+                <div class="dropdown-location-warehouse-image">
+                    <img t-attf-src="{{'/custom_barcode_app/static/src/img/warehouse-alt.svg'}}" style="width: 3.5rem;margin-right:0.41rem;"/>
+                </div>
+                <div>
+                    <div class="dropdown-location-warehouse-title">
+                        <h2 style="font-weight: 500;font-size: 1rem;">To</h2>
+                    </div>
+                    <div>
+                        <h2 class="dropdown-location-warehouse-name"><span>Dest Location</span></h2>
+                    </div>
+                </div>
+
+            </div>
+
+            <div t-if="state.list_visible and props.data.length>0" class="dropdown-location-list" t-attf-style="right:0;width: max-content;min-width:200px;">
+                <ul>
+                    <t t-foreach="props.data" t-as="i" t-key="i_index">
+                        <li t-on-click="()=> this.handleListClick(i)"><img t-attf-src="{{'/custom_barcode_app/static/src/img/warehouse-alt.svg'}}" style="width:1.5rem;margin-right:0.41rem;"/><span t-esc="i[1]"/></li>
+                    </t>
+                </ul>
+            </div>
+
+        </div>
+     </t>
+
+</templates>

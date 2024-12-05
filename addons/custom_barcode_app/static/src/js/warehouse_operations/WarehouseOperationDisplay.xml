@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+    <t t-name="custom_barcode_app.WarehouseOperationDisplay" owl="1">
+            <div style="font-family: 'Argentum Sans'; height:100%;">
+
+                <t>
+                    <div style="display:flex;text-align:center;background-color:#06516E;align-items: center; height:84px;">
+                        <div t-on-click="backButtonClick"
+                             class="warehouse-operation-back-button-left">
+                            <i class="fa fa-angle-left"></i>
+                        </div>
+
+
+                        </div>
+                    <div style="background-color:#4EC1E0; text-align: center;padding: 0.15rem;">
+                            <p style="color:#06516e;margin: 0;font-size: 1.2rem;font-weight: 600;">Select the warehouse operation type</p>
+                        </div>
+                    <div style="height:100%;overflow: auto;">
+                        <div style="display:flex; flex-flow: row wrap;align-content: flex-start;height: 100%;">
+                            <div t-foreach="warehouses_with_operation_types" t-as="warehouse"
+                                 t-key="warehouse_index"
+                                 style="flex: 1 1 auto; width:300px;font-family: 'Argentum Sans'; font-weight:600; margin: 0.5rem 0.5rem;background-color:#CEEBEE;">
+                                <div style="display:flex;background-color:#06516E; padding:0.8rem">
+
+
+                                    <h2 style="color:white;font-weight: 600;letter-spacing:0.8px;"> <span t-esc="warehouse.warehouse[1]"/></h2>
+                                </div>
+                                <div style="">
+                                        <div class="list-operation" t-foreach="warehouse.warehouse_operation_types"
+                                             t-as="operation_types" t-key="operation_types_index"
+                                             style="display:flex; cursor:pointer; padding:0.8rem;"
+                                             t-on-click="()=>this.selectOperationType(operation_types)">
+                                            <div style="flex: 1 1 auto;"><p style="margin:0;letter-spacing:0.8px;font-size:1.1rem;font-weight:500;"> <span
+                                                    t-esc="operation_types.name"/></p></div>
+                                            <div class="ready-count-box" style="padding: 0.1rem 0.9rem;border-radius: 0.4rem;font-size:1.1rem;"> <span
+                                                    t-esc="operation_types.count_picking_ready"/>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        <div style="flex: 1 1 auto; width:300px; margin: 0.5rem;padding: 0.8rem 2rem;">
+                            </div>
+                        <div style="flex: 1 1 auto; width:300px; margin: 0.5rem;padding: 0.8rem 2rem;">
+                            </div>
+                        <div style="flex: 1 1 auto; width:300px; margin: 0.5rem;padding: 0.8rem 2rem;">
+                            </div>
+                        <div style="flex: 1 1 auto; width:300px; margin: 0.5rem;padding: 0.8rem 2rem;">
+                            </div>
+                        <div style="flex: 1 1 auto; width:300px; margin: 0.5rem;padding: 0.8rem 2rem;">
+                            </div>
+                        <div style="flex: 1 1 auto; width:300px; margin: 0.5rem;padding: 0.8rem 2rem;">
+                            </div>
+                        <div style="flex: 1 1 auto; width:300px; margin: 0.5rem;padding: 0.8rem 2rem;">
+                            </div>
+                    </div>
+                    </div>
+                </t>
+
+        </div>
+     </t>
+
+
+    <t t-name="custom_barcode_app.WarehousePickingDisplay" owl="1">
+            <div style="font-family: 'Argentum Sans'; height:100%;">
+                <t>
+                    <div style="display:flex;text-align:center;background-color:#06516E;align-items: center; height:84px;">
+                        <div t-on-click="backButtonClickWarehousePickings"
+                             class="warehouse-operation-back-button-left">
+                            <i class="fa fa-angle-left"></i>
+                        </div>
+                        <div style="display:flex;flex-wrap: nowrap; margin-left:auto; ">
+                            <div style="margin: 7px;border-radius: 5px;display: flex;align-items: center;">
+                                <SelectState selected_state="state.selected_state" select_state="(state)=>this.selectState(state)"/>
+                                <input class="search-bar-input" type="text" placeholder="Search The Transfers by Name,Contact,Source Document...." t-on-input="setQuery"  style="margin:0px 0px 0px 5px; border:1px solid #06516E"/>
+                            </div>
+
+                        </div>
+
+                        </div>
+                    <div style="background-color:#4EC1E0; text-align: center;padding: 0.15rem;">
+                        <p style="color:#06516e;margin: 0;font-size: 1.2rem;font-weight: 600;">Select the transfer</p>
+                    </div>
+                    <div style="height: 100%;overflow: auto;">
+                        <div style="display:flex; flex-flow: row wrap;height: 100%;align-content: flex-start;">
+                            <div t-foreach="state.filtered_stock_pickings" t-as="picking" t-key="picking_index"
+                                 t-on-click="()=>this.selectOperation(picking)"
+                                 style="flex: 1 1 auto; width:300px; margin: 0.3rem;padding: 0.5rem 1.5rem; background-color:#CEEBEE;font-family: 'Lato'; font-weight:600;border: 1px solid #06516E;">
+                                 <div style="display:flex;justify-content:space-between;">
+                                     <div style="font-size:1.3rem; color: black;margin:0;letter-spacing: 1px;">
+                                        <span t-esc="picking.name"/>
+                                    </div>
+                                    <div style="display:flex;">
+                                        <div style="margin-right: 0.4rem;"><i class="fa fa-desktop" t-on-click.stop="()=> this.viewStockPicking(picking)"></i></div>
+                                        <div style="font-size: 1.0rem; color: white; padding:0.1rem 0.5rem;border-radius: 0.3rem;background-color: #06516e;">
+                                             <t>
+                                                 <t t-if="picking.state == 'assigned'">
+                                                     <t>Ready</t>
+                                                </t>
+                                                     <t t-elif="picking.state == 'draft'">
+                                                     <t>Draft</t>
+                                                </t>
+                                                     <t t-elif="picking.state == 'confirmed'">
+                                                     <t>Waiting</t>
+                                                </t>
+                                                     <t t-elif="picking.state == 'done'">
+                                                     <t>Done</t>
+                                                </t>
+                                                     <t t-elif="picking.state == 'cancel'">
+                                                     <t>Cancelled</t>
+                                                </t>
+
+                                             </t>
+                                        </div>
+                                    </div>
+
+                                 </div>
+                                <div style="margin-top: 1rem; display:flex;justify-content:space-between;">
+                                    <div>
+                                        <div style="display: flex;align-items: center;">
+                                            <i class="fa fa-calendar" style="margin-right:0.3rem;line-height: 0;"></i><span t-esc="picking.scheduled_date.split(' ')[0]" style="white-space: nowrap;"/>
+                                        </div>
+                                    </div>
+                                    <div style="text-align:right; margin-left:0.5rem;">
+                                        <span t-esc="picking.partner_id[1]"/>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div style="flex: 1 1 auto; width:300px; margin: 0.3rem;padding: 0.5rem 1.5rem;">
+                                                    </div>
+                            <div style="flex: 1 1 auto; width:300px; margin: 0.3rem;padding:0.5rem 1.5rem;">
+                                                    </div>
+                            <div style="flex: 1 1 auto; width:300px; margin: 0.3rem;padding: 0.5rem 1.5rem;">
+                                                    </div>
+                            <div style="flex: 1 1 auto; width:300px; margin: 0.3rem;padding: 0.5rem 1.5rem;">
+                                                    </div>
+                            <div style="flex: 1 1 auto; width:300px; margin: 0.3rem;padding: 0.5rem 1.5rem;">
+                                                    </div>
+                            <div style="flex: 1 1 auto; width:300px; margin: 0.3rem;padding:0.5rem 1.5rem;">
+                                                    </div>
+
+                        </div>
+                    </div>
+                </t>
+        </div>
+     </t>
+
+    <t t-name="custom_barcode_app.SelectState" owl="1">
+
+        <div style="font-family: 'Argentum Sans';text-align:left; position:relative; max-width: 150px;width: 150px;"  t-ref="root_select_state">
+            <div t-on-click="clickDropDown" class="dropdown-div" style="align-items:center; padding:10px;">
+                <h2 style="font-weight: 600;font-size: 1.5rem;">
+                    <t t-if="props.selected_state == 'assigned'">
+                        <t>Ready</t>
+                    </t>
+                    <t t-elif="props.selected_state == 'draft'">
+                        <t>Draft</t>
+                    </t>
+                    <t t-elif="props.selected_state == 'confirmed'">
+                        <t>Waiting</t>
+                    </t>
+                    <t t-elif="props.selected_state == 'done'">
+                        <t>Done</t>
+                    </t>
+                    <t t-elif="props.selected_state == 'cancel'">
+                        <t>Cancelled</t>
+                    </t>
+                </h2>
+            </div>
+
+            <div t-if="state.list_visible" class="dropdown-list" style="overflow-y: auto;">
+                <ul>
+                    <li t-on-click="()=>this.handleListClick('assigned')">
+                        <div style="align-items:center; display:flex;">
+                            <div>
+                                <h2 style="font-size: 1.2rem;font-weight: 600;">Ready</h2>
+                            </div>
+                        </div>
+                    </li>
+                    <li t-on-click="()=>this.handleListClick('confirmed')">
+                        <div style="align-items:center; display:flex;">
+                            <div>
+                                <h2 style="font-size: 1.2rem;font-weight: 600;">Waiting</h2>
+                            </div>
+                        </div>
+                    </li>
+                    <li t-on-click="()=>this.handleListClick('draft')">
+                        <div style="align-items:center; display:flex;">
+                            <div>
+                                <h2 style="font-size: 1.2rem;font-weight: 600;">Draft</h2>
+                            </div>
+                        </div>
+                    </li>
+                    <li t-on-click="()=>this.handleListClick('done')">
+                        <div style="align-items:center; display:flex;">
+                            <div>
+                                <h2 style="font-size: 1.2rem;font-weight: 600;">Done</h2>
+                            </div>
+                        </div>
+                    </li>
+                    <li t-on-click="()=>this.handleListClick('cancel')">
+                        <div style="align-items:center; display:flex;">
+                            <div>
+                                <h2 style="font-size: 1.2rem;font-weight: 600;">Cancelled</h2>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+
+     </t>
+
+ </templates>
+

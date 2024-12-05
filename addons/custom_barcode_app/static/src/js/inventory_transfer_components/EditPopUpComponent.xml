@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+    <t t-name="custom_barcode_app.EditPopUpComponent" owl="1">
+        <div style="height:100%;position:relative;">
+            <div style="display:flex;text-align:center;background-color:#06516E;align-items: center;height:84px;">
+                    <div t-on-click="()=> props.back_button()"
+                                 style="color : white; padding: 0.1rem 2rem; font-size: 50px;">
+                        <i class="fa fa-angle-left"></i>
+                    </div>
+            </div>
+            <div style="display:flex;justify-content:center;overflow:auto;font-family:Argentum Sans;position: absolute;top: 84px;bottom: 0px;left: 0;right: 0;">
+                <div class="product-info-container">
+                    <div>
+                        <h1 style="background-color: #06516e;padding: 10px;border-radius: 5px;font-weight: 600;color: white;"><span t-esc="props.edit_popup_part.display_name"/></h1>
+
+                    </div>
+                    <div  style="display:flex;justify-content: space-between;flex-wrap: wrap-reverse;">
+                         <div style="display:flex;height: 412px;">
+                             <div class="calculator"
+                                  style=" border: 1px solid #ccc;border-radius: 5px;width: 350px; margin-top:20px;">
+                                 <div style="display:flex;">
+                                     <input id='input_value' type="text" class="calculator-screen z-depth-1"
+                                                           t-att-value="state.display_value" disabled="disabled"
+                                                           style="width: 350px; height: 60px;border: none;background-color: #252525;color: #fff;text-align: right;padding-right: 20px;padding-left: 10px;font-size: 4rem;"/>
+                                 </div>
+                                 <div style="display:flex;">
+                                     <div style=" display: grid;grid-template-columns: repeat(3, 1fr);grid-gap: 10px;padding: 20px 0px 10px 20px;">
+                                         <button type="button" value="7" class="operator btn btn-info"
+                                                          style=" height: 55px; width:55px;font-size: 2rem!important;" t-on-click="digitValue">7</button>
+                                         <button type="button" value="8" class="operator btn btn-info"
+                                                                style=" height: 55px;width:55px;font-size: 2rem!important;" t-on-click="digitValue">8</button>
+                                         <button type="button" value="9" class="operator btn btn-info"
+                                                                style=" height: 55px;width:55px;font-size: 2rem!important;" t-on-click="digitValue">9</button>
+
+                                         <button type="button" value="4" class="operator btn btn-info"
+                                                                style=" height: 55px;width:55px;font-size: 2rem!important;" t-on-click="digitValue">4</button>
+                                         <button type="button" value="5" class="operator btn btn-info"
+                                                                style=" height: 55px;width:55px;font-size: 2rem!important;" t-on-click="digitValue">5</button>
+                                         <button type="button" value="6" class="operator btn btn-info"
+                                                                style=" height: 55px;width:55px;font-size: 2rem!important;" t-on-click="digitValue">6</button>
+
+
+                                         <button type="button" value="1" class="operator btn btn-info"
+                                                                style=" height: 55px;width:55px;font-size: 2rem!important;" t-on-click="digitValue">1</button>
+                                         <button type="button" value="2" class="operator btn btn-info"
+                                                                style=" height: 55px;width:55px;font-size: 2rem!important;" t-on-click="digitValue">2</button>
+                                         <button type="button" value="3" class="operator btn btn-info"
+                                                                style=" height: 55px;width:55px;font-size: 2rem!important;" t-on-click="digitValue">3</button>
+
+
+                                         <button type="button" value="0" class="operator btn btn-info"
+                                                                style=" height: 55px;width:55px;font-size: 2rem!important;" t-on-click="digitValue">0</button>
+                                         <button type="button" class="decimal function btn btn-secondary" value="."
+                                                                style=" height: 55px;width:55px;font-size: 2rem!important;" t-on-click="selectDot">.</button>
+                                         <button type="button" class="all-clear function btn btn-danger btn-sm" value="clear"
+                                                                style=" height: 55px;width:55px;font-size: 2rem!important;" t-on-click="clearLastDigit"><i class="fa fa-arrow-left"/></button>
+                                     </div>
+                                     <div style="display: grid;grid-template-columns: repeat(2, 1fr);grid-gap: 10px;padding: 20px 10px 10px 10px;">
+                                         <button type="button" value="2" class="operator btn btn-info"
+                                                                style=" height: 55px;width:55px;font-size: 2rem!important;" t-on-click="plusOne">+1</button>
+                                         <button type="button" value="3" class="operator btn btn-info"
+                                                                style=" height: 55px;width:55px;font-size: 2rem!important;" t-on-click="minusOne">-1</button>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                        <div>
+                            <div style=" margin:20px;height: 200px;">
+                                <img t-attf-src="{{imageUrl(props.edit_popup_part.product_id,props.edit_popup_part.write_date)}}"
+                                                 style="object-fit:contain; max-height: 200px; max-width:500px;border-radius:3px;"/>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div style="width:100%;margin: 2rem 0rem;">
+                            <table class="data-table-responsive" style="width:100%">
+                                <tr>
+                                    <td style="font-weight: 500;">Product Type</td>
+                                    <td><span t-esc="state.part_details.product_details[0].detailed_type"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: 500;">Part No</td>
+                                    <td><span t-esc="state.part_details.product_details[0].default_code"/></td>
+
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: 500;">Category</td>
+                                    <td><span t-esc="state.part_details.product_details[0].categ_id"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: 500;">Barcode</td>
+                                    <td><span t-esc="state.part_details.product_details[0].barcode"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: 500;">Sales Description</td>
+                                    <td><span t-esc="state.part_details.product_details[0].description_sale"/></td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+                    <div>
+                        <WarehouseDetailsTable warehouse_details="state.part_details"/>
+                    </div>
+                    <div style="height:40vh;width:100%"></div>
+
+                </div>
+
+                <div style=" position:fixed;bottom: 0px;width: 100%;background-color: #e5e7e9;color: black;padding-left: 5px;font-weight: bold;font-size: 30px;">
+                    <div style="display: flex; flex-wrap: wrap;">
+                            <button type="button" class="confirm-button" t-on-click="()=>props.back_button()">Back</button>
+                            <button type="button" class="confirm-button"
+                                    t-on-click="()=>props.confirm_button(state.display_value)">Confirm</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+<!--        <div>`12</div>-->
+    </t>
+</templates>

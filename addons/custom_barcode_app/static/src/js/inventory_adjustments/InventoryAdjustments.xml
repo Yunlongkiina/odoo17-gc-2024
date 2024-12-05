@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+
+    <t t-name="custom_barcode_app.InventoryAdjustments" owl="1">
+        <div style="height:100%; font-family: 'Argentum Sans';">
+                <t>
+                    <div id="popup1" class="validate_popup_overlay" t-if="state.validate_popup">
+                        <div style="height:100%;">
+                            <div class="validate_popup_responsive">
+                                    <h2 style="font-weight: 500; text-align:center;">Do you want to apply the inventory adjustment?</h2>
+                                    <div>
+                                        <div style="display:flex; justify-content: space-evenly;margin-top: 20px;">
+                                            <button class="validate-popup-button-discard-responsive" t-on-click="discardValidatePopUp">Discard</button>
+                                            <button t-if="state.groups.group_stock_user" class="validate-popup-button-responsive" t-on-click="applyTransfer">Apply</button>
+                                            <button t-if="state.groups.group_stock_manager" class="validate-popup-button-responsive" t-on-click="applyValidateTransfer">Validate</button>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+
+                <t>
+                    <div id="popup1" class="validate_popup_overlay" t-if="state.back_popup">
+                        <div style="height:100%;">
+                            <div class="validate_popup_responsive">
+                                    <h2 style="font-weight: 500; text-align:center;">Do you want to exit without saving</h2>
+                                    <div>
+                                        <div style="display:flex; justify-content: space-evenly;margin-top: 20px;">
+                                            <button class="validate-popup-button-discard-responsive" t-on-click="discardBackPopup">Discard</button>
+                                            <button class="validate-popup-button-responsive" t-on-click="backButton">Yes</button>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+
+                 <t t-if="state.edit_popup">
+                    <EditPopUpComponent2 back_button="()=>this.backButtonEditPopUp()" confirm_button="(display_value)=>this.editPopUpConfirmButton(display_value)"
+                                        edit_popup_part ="edit_popup_part.data"/>
+<!--                     <h1>123</h1>-->
+                </t>
+
+                <t t-elif="state.add_products_popup">
+                    <AddProductsPopUp back_button="()=>this.backButtonAddProductPopup()" add_product="(selected_part, quantity)=>this.addProduct(selected_part, quantity)"/>
+                </t>
+                <t t-elif="state.scanning_display">
+                    <div style="display:flex;text-align:center;background-color:#06516E;align-items: center; height:84px;">
+                        <div t-on-click="backButtonPopUp"
+                             style="color : white; padding: 0.1rem 2rem; font-size: 50px;">
+                            <i class="fa fa-angle-left"></i>
+                        </div>
+                        <h2 class="inventory-adjustment-title">Inventory Adjustment</h2>
+                        <div style="display:flex; margin-left:auto; align-items:center;">
+
+                            <LocationDropDown internal_locations="internal_src_location_list" select_action="(child_location) => this.selectLocation(child_location)" selected_location="state.src_locations[state.current_page-1]" />
+                            <div class="mobile-tab-inventory-adjustment" style="">
+                                <div t-on-click="backPage"
+                                     style="margin: 7px; align-items:center;display: flex;">
+                                    <button style="background-color:#CEEBEE;padding: 0.4rem 1rem;border-radius: 0.4rem;font-size: 2rem;border: 0;"><i class="fa fa-angle-left"></i></button>
+                                </div>
+                                <div style="align-items:center;display:flex;">
+                                    <h1 style="color:white;letter-spacing: 3px;font-weight: 600;"><t t-esc="state.current_page"/>/<t t-esc="state.total_pages"/></h1>
+                                </div>
+                                <div t-on-click="nextPage1" style="margin: 7px;align-items:center;display: flex;  ">
+                                    <button style="background-color:#CEEBEE;padding: 0.4rem 1rem;border-radius: 0.4rem;font-size: 2rem;border: 0;"><i class="fa fa-angle-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+
+                    <div style="display:flex;justify-content:space-between;background-color:#4EC1E0;flex-direction: row-reverse;">
+                        <div class="mobile-tab-inventory-adjustment-enable" style="">
+                                <div t-on-click="backPage"
+                                     style="margin: 7px; align-items:center;display: flex;">
+                                    <button style="background-color:#CEEBEE;padding: 0.2rem 1rem;border-radius: 0.4rem;font-size: 2rem;border: 0;"><i class="fa fa-angle-left"></i></button>
+                                </div>
+                                <div style="align-items:center;display:flex;">
+                                    <h1 style="color:black;letter-spacing: 3px;font-weight: 600;"><t t-esc="state.current_page"/>/<t t-esc="state.total_pages"/></h1>
+                                </div>
+                                <div t-on-click="nextPage1" style="margin: 7px;align-items:center;display: flex;  ">
+                                    <button style="background-color:#CEEBEE;padding: 0.2rem 1rem;border-radius: 0.4rem;font-size: 2rem;border: 0;"><i class="fa fa-angle-right"></i></button>
+                                </div>
+                            </div>
+                        <div style="margin: 5px 5px 5px 5px;display:flex;align-items:center">
+                            <SortByInventoryAdjustment sort_by="state.sort_by" select_sort_by="(selected_item) => this.selectSortBy(selected_item)"/>
+                        </div>
+                    </div>
+
+                    <div t-ref="barcodeLineBox"  t-if="state.display_parts.length == state.total_pages" style="overflow-y :auto; height:100%;">
+                        <div t-ref="barcodeLine" >
+                            <t  t-foreach="state.display_parts[state.current_page-1]" t-as="inventory_line" t-key="inventory_line_index">
+                                <BarcodeLine inventory_line="inventory_line" image_url="(id, write_date) => this.imageUrl(id, write_date)" edit_popup="(inventory_line) => this.editPopup(inventory_line)" handle_click_plus="(inventory_line) => this.handleClickPlus(inventory_line)" hande_click_minus="(inventory_line) => this.handleClickMinus(inventory_line)" handle_click_total_quantity="(inventory_line) => this.handleClickTotalQuantity(inventory_line)" edit_inventory_quantity_set="(inventory_line) => this.editInventoryQuantitySet(inventory_line)" change_is_select="(inventory_line) => this.changeIsSelect(inventory_line)"/>
+                            </t>
+                            <div style="height:40vh;">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div style=" position:fixed;bottom: 0px;width: 100%;">
+                        <button type="button" class="confirm-button" t-on-click="addProductPopup">Add Products</button>
+                        <button t-attf-style ="{{ display_parts_list.length==1 and display_parts_list[0].length==0 ? 'background-color:#2E3944' :''}};pointer-events:{{ display_parts_list.length==1 and display_parts_list[0].length==0 ? 'none' :'auto'}};" type="button" t-on-click="validatePopUp" class="confirm-button"><span t-if="state.groups.group_stock_manager">Validate</span><span t-else="">Apply</span></button>
+                    </div>
+                </t>
+        </div>
+<!--        <div>hi</div>-->
+
+    </t>
+
+
+        <t t-name="custom_barcode_app.BarcodeLine" owl="1">
+        <div class="warehouse-operation-barcode-line" t-attf-id="barcode_line_{{props.inventory_line.id}}" t-on-click="()=> props.change_is_select(props.inventory_line)" t-attf-style="background-color:{{props.inventory_line.genuine_inventory_line ? '#CEEBEE' : '#F7C6C5' }}; border:{{props.inventory_line.is_selected ? '4px solid ' : '4px solid transparent'}};margin: 0.5rem;font-family: 'Argentum Sans'; font-weight:500;" >
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                <div style="display: flex; flex-wrap: nowrap;">
+                    <div style=" margin-right:10px; width:120px;height:80px;">
+                        <img t-attf-src="{{props.image_url(props.inventory_line.data.product_id,props.inventory_line.data.write_date)}}"
+                                         style="object-fit:contain;  max-height:80px; max-width:120px;"/>
+                    </div>
+                    <div style="">
+                        <p class="warehouse-operation-display-name" >
+                            <span t-esc="props.inventory_line.data.display_name"/>
+                        </p>
+                        <div style="font-size: 1.4rem; color: black; display:flex;">
+
+                            <t>
+                                <div style=" display:flex;">
+                                    <div t-if="!props.inventory_line.data.inventory_quantity_set" style="padding: 2px 5px;background-color: #CEEBEE;border-radius: 5px 0px 0px 5px;color: black;border: 0.2rem solid;border-right: 0;">
+                                        <span>?</span>
+                                    </div>
+                                    <div t-elif="props.inventory_line.data.inventory_quantity_set" style="padding: 2px 5px;background-color: #CEEBEE;border-radius: 5px 0px 0px 5px;color: black;border: 0.2rem solid;border-right: 0;">
+                                        <span style="" t-esc="props.inventory_line.data.inventory_quantity"/>
+                                    </div>
+                                    <div style="padding: 2px 5px;background-color: #06516e;border-radius: 0px 5px 5px 0px;color: white;border: 0.2rem solid #06516e;border-left: 0;">
+                                        <span style="" t-esc="props.inventory_line.data.quantity"/>
+                                    </div>
+                                </div>
+                            </t>
+<!--                            <div style="padding: 2px 5px;background-color: #06516e;border-radius: 5px 5px 5px 5px;color: white;border: 0.2rem solid #06516e;border-left: 0; margin-left:1rem;">-->
+<!--                                        <span t-if="props.inventory_line.genuine_inventory_line">Assigned</span><span t-elif="!props.inventory_line.genuine_inventory_line"> Not Assigned</span>-->
+<!--                            </div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="button-panel-warehouse" style="">
+                    <div  style="display: flex;align-items: center; justify-content: right;">
+                        <button type="button" class="line-button" t-on-click.stop="()=> props.edit_popup(props.inventory_line)"><i style="" class="fa fa-2x fa-pencil" /></button>
+                        <button type="button" class="line-button-quantity-set"  t-on-click.stop="()=> props.edit_inventory_quantity_set(props.inventory_line)">
+                            <t t-if="props.inventory_line.data.inventory_quantity_set">
+                                <i class="fa fa-2x fa-check" style=""></i>
+                            </t>
+                        </button>
+<!--                        <BarcodeLineButtonInventoryEdit edit_popup="()=> props.edit_popup(props.inventory_line)" />-->
+<!--                        <BarcodeLineButtonSetInventory edit_inventory_quantity_set="()=>props.edit_inventory_quantity_set(props.inventory_line)" />-->
+
+                    </div>
+
+                    <div t-if="props.inventory_line.is_selected" style="display: flex;align-items: center; justify-content: right;">
+
+                        <button type="button" class="line-button" t-on-click="()=> props.hande_click_minus(props.inventory_line)"><span>-1</span></button>
+                        <button type="button" class="line-button" t-on-click="()=> props.handle_click_plus(props.inventory_line)"><span>+1</span></button>
+                        <button type="button" class="equalize-button line-button"  t-on-click="()=> props.handle_click_total_quantity(props.inventory_line)"><span t-if="(props.inventory_line.data.quantity-props.inventory_line.data.inventory_quantity) >= 0">+</span><span t-esc="props.inventory_line.data.quantity - props.inventory_line.data.inventory_quantity" ></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+
+
+
+     <t t-name="custom_barcode_app.LocationDropDown" owl="1">
+
+        <div style="font-family: 'Argentum Sans';min-height: 100%;max-width: 270px; width:270px; position:relative;margin-right:0.5rem;"  t-ref="root_location_drop_down">
+            <div t-on-click="clickDropDown" style="align-items:center;padding: 8px 10px;display: flex;background-color: #CEEBEE;border-radius: 0.4rem;cursor: pointer;">
+                     <div t-attf-style="color:black;text-align:left; width:100%;">
+                         <div style="display: flex;align-items: center;">
+                             <div class="location-warehouse-icon">
+                                 <img src="/custom_barcode_app/static/src/img/warehouse-alt.svg" style="width: 3.5rem;margin-right:0.41rem;"/>
+                             </div>
+                             <div>
+                                 <div>
+                                     <h2 style="font-weight: 500;font-size: 1rem; margin:0;">Source</h2>
+                                 </div>
+                                 <div>
+                                     <h2 t-if="props.selected_location.length == 0" style="margin: 0;font-size: 1.3rem;font-weight: 600;;">Location</h2>
+                                     <h2 t-if="props.selected_location.length>0" style="margin: 0;font-size: 1.3rem;font-weight: 600;"><span t-esc="props.selected_location[1]"/></h2>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+            </div>
+            <t t-if="state.list_visible">
+            <div  class="search-bar-list" style=" position: absolute; z-index: 1;overflow-y: auto;margin-top: 10px;border-radius: 0.5rem;left: 0;right: 0;max-height: calc(100vh - 134px - 160px);cursor: pointer; border: 1px solid #4a4a4a; ">
+                <table class="inventory-location-drop-down" >
+                    <t t-foreach="props.internal_locations" t-as="warehouse_line" t-key="warehouse_line_index">
+                        <thead>
+                            <tr style="text-align: center;">
+                                <th style="background-color: #06516e;">
+                                    <h1 style="font-size: 1.8rem;overflow: hidden;margin:0;font-weight: 600; color:white"><span t-esc="warehouse_line.warehouse[1]"/></h1>
+                                </th>
+                            </tr>
+
+                        </thead>
+                        <tbody  t-foreach="warehouse_line.child_locations" t-as="child_location" t-key="child_location_index">
+                            <tr style="font-family: 'Argentum Sans'; text-align: left;" t-on-click="()=> this.handleListClick(child_location)">
+                                <td>
+                                    <h1 style="font-size: 1.4rem;overflow: hidden;margin:0;font-weight: 500;"><span t-esc="child_location[1]"/></h1>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </t>
+                </table>
+            </div>
+        </t>
+
+        </div>
+
+
+
+     </t>
+
+
+<t t-name="custom_barcode_app.SortByInventoryAdjustment" owl="1">
+
+        <div style="font-family: 'Argentum Sans';text-align:left; position:relative; max-width: 180px;width: 180px;" t-ref="root_sort_inventory">
+            <div t-on-click="clickDropDown" class="dropdown-div" style="align-items:center; padding:5px;justify-content: space-between;">
+                    <div>
+                        <h2 style="font-weight: 600;font-size: 1.5rem; margin:0px;">
+                            <t t-if="props.sort_by == 'name'">
+                                <t>Name</t>
+                            </t>
+                            <t t-elif="props.sort_by == 'internal_reference'">
+                                <t>Part No</t>
+                            </t>
+                            <t t-elif="props.sort_by == 'quantity'">
+                                <t>Quantity</t>
+                            </t>
+                            <t t-elif="props.sort_by == 'weight'">
+                                <t>Weight</t>
+                            </t>
+                        </h2>
+                    </div>
+                    <div style="align-items:center;display: flex; margin-right:3px;">
+                        <i style="font-size: 1.5rem;" class="fa fa-sort"></i>
+                    </div>
+
+            </div>
+
+            <div t-if="state.list_visible" class="dropdown-list" style="overflow-y: auto;z-index: 1; border:1px solid;">
+                <div>
+                    <div t-on-click="() => this.handleListClick('name')" class="sort-by-list-item">
+                            <h2 style="font-size: 1.2rem;font-weight: 600;">Name</h2>
+                    </div>
+                    <div t-on-click="() => this.handleListClick('internal_reference')" class="sort-by-list-item">
+
+                            <h2 style="font-size: 1.2rem;font-weight: 600;">Part No</h2>
+
+                    </div>
+                    <div t-on-click="() => this.handleListClick('quantity')" class="sort-by-list-item">
+
+                            <h2 style="font-size: 1.2rem;font-weight: 600;">Quantity</h2>
+
+                    </div>
+                    <div t-on-click="() => this.handleListClick('weight')" class="sort-by-list-item">
+
+                            <h2 style="font-size: 1.2rem;font-weight: 600;">Weight</h2>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+     </t>
+
+    <t t-name="custom_barcode_app.BarcodeLineButtonInventoryEdit" owl="1">
+            <button type="button" class="line-button"><i style="" class="fa fa-2x fa-pencil"/></button>
+    </t>
+
+    <t t-name="custom_barcode_app.BarcodeLineButtonSetInventory" owl="1">
+            <button type="button" class="line-button-quantity-set" >
+                <t t-if="props.inventory_line.data.inventory_quantity_set">
+                    <i class="fa fa-2x fa-check" style=""></i>
+                </t>
+            </button>
+     </t>
+
+
+
+
+
+ </templates>

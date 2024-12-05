@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+
+    <t t-name="custom_barcode_app.ProductDetails" owl="1">
+
+        <div style="font-family:Argentum Sans; height:100%;position:relative;">
+            <t>
+                <div id="popup1" class="overlay" t-if="state.popup_visible">
+	                <div class="popup">
+                            <h2 style="font-weight: 600;"><span t-esc="state.part.product_details[0].display_name"/></h2>
+                        <div class="content">
+                                <label for="sale-price" style="font-size:1.2rem">Sale Price</label>
+                            <input id="sale-price" type="text"
+                                   t-attf-value="{{state.part.product_details[0].list_price}}" style="height: 36px;padding: 0 11px;border-radius: 2.5px;transition: color .2s,background .2s,border-color .2s;color: #262626;
+        background-color: #f0f0f0;
+        border: 1px solid #f0f0f0;
+        font-size: 16px;"/>
+                            <div style="display:flex; justify-content: space-evenly;margin-top: 20px;">
+                                    <button class="popup-button" t-on-click="() => this.closePopUp">Discard</button>
+                                <button class="popup-button">Confirm</button>
+                                </div>
+
+                            </div>
+	                </div>
+                </div>
+            </t>
+            <t>
+                <t t-if="state.part_available">
+                    <div style="display:flex;background-color:#06516E;align-items: center;height:84px;">
+                            <div t-on-click="backButtonClick"
+                                 style="color : white; padding: 0.1rem 2rem; font-size: 50px;">
+                                <i class="fa fa-angle-left"></i>
+                            </div>
+
+                        <div style="flex: 1 1 auto;position: relative;">
+                                <SearchBar selectedProductFunction="selectProductSearchBar"/>
+                            </div>
+                    </div>
+                    <t if="Object.keys(state.part).length>0">
+                        <div style="overflow:auto;display:flex;justify-content:center;background-color: white;position: absolute;top: 84px;bottom: 0px;left: 0;right: 0;">
+                            <div class="product-info-container">
+                                <div>
+                                    <div style="background-color: #06516e;padding: 10px;border-radius: 5px;display:flex;justify-content:space-between">
+                                    <h1 style="font-weight: 600;color: white;"><span t-esc="state.part.product_details[0].display_name"/></h1>
+                                    <!--
+                                    <i style="font-size:3rem;color: white;" class="fa fa-2x fa-edit"
+                                   t-on-click="() => this.editProductDataPopup"/>
+                                   -->
+                                </div>
+                        </div>
+                                <div style="display:flex; flex-wrap: wrap-reverse; align-items: center;width:100%;">
+                                        <div style="flex: 1 1 auto;">
+                                            <table class="data-table-responsive" style="width:100%;">
+                                                <tr>
+                                                    <td style="font-weight: 500;">Product Type</td>
+                                                    <td><span t-esc="state.part.product_details[0].detailed_type"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight: 500;">Part No</td>
+                                                    <td><span t-esc="state.part.product_details[0].default_code"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight: 500;">Category</td>
+                                                    <td><span t-esc="state.part.product_details[0].categ_id"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight: 500;">Barcode</td>
+                                                    <td><span t-esc="state.part.product_details[0].barcode"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight: 500;">Sales Description</td>
+                                                    <td><span t-esc="state.part.product_details[0].description_sale"/></td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+
+                                    <div style="text-align:right;width:49%;">
+                                               <div>
+                                                    <div style=" margin:20px;height: 220px;">
+                                                        <img t-attf-src="{{imageUrl(state.part.product_details[0].id,state.part.product_details[0].write_date)}}"
+                                                             style="object-fit:contain; max-height: 220px; max-width:500px;border-radius:3px;"/>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                <div style="margin: 2.5rem 0;">
+                                        <div>
+                                            <WarehouseDetailsTable warehouse_details="state.part"/>
+                                        </div>
+                                    </div>
+                                <div style="height:40vh;width:100%"></div>
+                                </div>
+
+                        </div>
+                    </t>
+
+                </t>
+                <div style="height:100%;background-color:#F3F3F3" t-else="">
+                    <div style="display:flex;text-align:center;background-color:#06516E;align-items: center;height:84px;">
+                            <div t-on-click="backButtonClick"
+                                 style="color : white; padding: 0.1rem 2rem; font-size: 50px;margin-right:auto;">
+                                <i class="fa fa-angle-left"></i>
+                            </div>
+
+                    </div>
+                    <div style="width: 100%;display: flex;flex-direction: row;flex-wrap: wrap;justify-content: center;align-items: center;">
+                        <div style="width:100%;">
+                            <SearchBar1 selectedProductFunction="selectProductSearchBar"/>
+                        </div>
+
+
+                    </div>
+                </div>
+            </t>
+        </div>
+     </t>
+ </templates>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <data>
+        <template id="report_delivery_document_gc" inherit_id="stock.report_delivery_document">
+            <xpath expr="//table[@name='stock_move_table']/tbody/t" position="replace">
+                <t t-if="o.move_ids.filtered(lambda x: x.reserved_uom_qty)">
+                    <t t-set="lines" t-value="o.move_ids.filtered(lambda x: x.reserved_uom_qty)"/>
+                </t>
+                <t t-else="">
+                    <t t-set="lines" t-value="o.move_ids.filtered(lambda x: x.product_uom_qty)"/>
+                </t>
+            </xpath>
+            <xpath expr="//table[@name='stock_move_table']/tbody/tr/td[2]/span[1]" position="replace">
+                <t t-if="move.reserved_uom_qty">
+                    <span t-field="move.reserved_uom_qty">3.00</span>
+                </t>
+                <t t-else="">
+                    <span t-field="move.product_uom_qty">3.00</span>
+                </t>
+            </xpath>
+        </template>
+
+        <record id="gc_view_picking_form_inherit" model="ir.ui.view">
+            <field name="name">gc.stock.picking.form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='move_ids_without_package']/tree//field[@name='product_uom_qty']" position="replace">
+                  <field name="product_uom_qty" string="Demand" readonly="not is_initial_demand_editable" column_invisible="parent.state not in ('draft')"/>
+                  <field name="reserved_uom_qty" string="Demand" readonly="True" column_invisible="parent.state in ('draft')"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="action_barcode" model="ir.actions.client">
+          <field name="name">Barcode</field>
+          <field name="tag">main_screen</field>
+          <field name="target">main</field>
+        </record>
+        <menuitem name="Barcode" id="barcode_menu_root" action="action_barcode" groups="stock.group_stock_user" web_icon="custom_barcode_app,static/description/icon.png" ></menuitem>
+  </data>
+
+</odoo>

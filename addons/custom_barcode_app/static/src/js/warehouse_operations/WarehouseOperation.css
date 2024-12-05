@@ -1,0 +1,117 @@
+.button-panel-warehouse {
+    display: block;
+    margin: 0px 0px 0px auto;
+}
+
+.warehouse-operation-display-name {
+    font-size: 1.4rem;
+    color: black;
+    margin-bottom: 0.3rem;
+}
+
+.warehouse-operation-barcode-line {
+    padding: 0.8rem 2rem;
+}
+
+.warehouse-operation-location-tab {
+    display: flex;
+}
+
+.location-tab-mobile {
+    display: none;
+}
+
+.warehouse-operation-picking-name {
+    color: #EEEEEE;
+    margin: 0;
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 1.9rem;
+}
+
+.warehouse-operation-back-button-left {
+    color: white;
+    padding: 0.1rem 2rem;
+    font-size: 50px;
+}
+
+.location-select-container {
+    color: black;
+    margin: 7px;
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 820px) {
+    .button-panel-warehouse {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .warehouse-operation-display-name {
+        font-size: 1.2rem;
+        color: black;
+    }
+
+    .warehouse-operation-location-tab {
+        display: none;
+
+    }
+
+    .location-tab-mobile {
+        display: flex;
+
+    }
+
+    .location-container {
+        position: relative;
+        display: flex;
+        padding: 0px 5px 2px 5px;
+        flex: 1;
+    }
+
+    .warehouse-operation-picking-name {
+        color: #EEEEEE;
+        margin: 0;
+        letter-spacing: 1px;
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+
+    .warehouse-operation-back-button-left {
+        color: white;
+        padding: 0.1rem 1.5rem;
+        font-size: 40px;
+    }
+
+    .location-select-container {
+        color: black;
+        margin: 7px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media (max-width: 540px) {
+    .button-panel-warehouse {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .warehouse-operation-barcode-line {
+        padding: 0.8rem 0.8rem;
+    }
+
+    .warehouse-operation-back-button-left {
+        color: white;
+        padding: 0.1rem 1rem;
+        font-size: 30px;
+    }
+
+    .location-select-container {
+        color: black;
+        display: flex;
+        align-items: center;
+        margin: 5px 7px;
+    }
+}

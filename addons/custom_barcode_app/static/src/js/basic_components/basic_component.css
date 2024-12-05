@@ -1,0 +1,321 @@
+.product-select-dropdown {
+    width: 100%;
+}
+
+.product-select-dropdown td {
+    padding: 8px 10px;
+}
+
+.product-select-dropdown tr {
+    border-bottom: 1px solid #dddddd;
+    background-color: #FFFFFF;
+    color: #4a4a4a;
+
+}
+
+.product-select-dropdown tr:hover {
+    border-bottom: 1px solid #dddddd;
+    background-color: #06516E;
+    color: #FFFFFF;
+
+}
+
+.dropdown-list {
+    position: absolute;
+    margin-top: 10px;
+    padding: 2px;
+    background-color: #CEEBEE;
+    border-radius: 0.5rem;
+    left: 0;
+    right: 0;
+    max-height: calc(100vh - 134px - 160px);
+    cursor: pointer;
+}
+
+.dropdown-list ul {
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown-list li {
+    display: flex;
+    list-style-type: none;
+    font-size: 1.2rem;
+    padding: 3px;
+    font-weight: 600;
+}
+
+.dropdown-list h2 {
+    margin: 0
+}
+
+.dropdown-location-div {
+
+    padding: 0.8rem 0.7rem;
+    cursor: pointer;
+
+}
+
+.dropdown-location-list {
+    position: absolute;
+    margin-top: 10px;
+    background-color: #CEEBEE;
+    border-radius: 0.5rem;
+    max-height: calc(100vh - 134px - 160px);
+    z-index: 1;
+}
+
+.dropdown-location-list ul {
+    margin: 0;
+    padding: 0;
+    max-height: 40vh;
+    overflow: auto;
+}
+
+.dropdown-location-list li {
+    display: flex;
+    list-style-type: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 2.5px 10px;
+}
+
+.dropdown-location-list li:hover {
+    color: #FFFFFF;
+    background-color: #06516E;
+}
+
+.list-operation .ready-count-box {
+    background-color: #06516E;
+    color: #FFFFFF;
+}
+
+.list-operation:hover,
+.list-operation:focus {
+    background-color: #06516E;
+    color: #FFFFFF;
+}
+
+.list-operation:focus .ready-count-box {
+    background-color: white;
+    color: #06516E;
+}
+
+.list-operation:hover .ready-count-box {
+    background-color: white;
+    color: #06516E;
+}
+
+.validate_popup_overlay {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+
+}
+
+.validate_popup_responsive {
+    margin: 8rem auto 0;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 800px;
+    position: relative;
+    transition: all 5s ease-in-out;
+}
+
+.validate-popup-button-responsive {
+
+    font-family: 'Argentum Sans';
+    background-color: #06516E;
+    border-radius: 5px;
+    border-style: none;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    letter-spacing: 1px;
+    display: inline-block;
+    font-size: 1.3rem;
+    font-weight: 500;
+    height: 5rem;
+    width: 30%;
+    line-height: 20px;
+    list-style: none;
+    margin: 1px;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.validate-popup-button-discard-responsive {
+
+    font-family: 'Argentum Sans';
+    background-color: #F0F0F0;
+    border-radius: 5px;
+    border: #06516E solid 2px;
+    box-sizing: border-box;
+    color: #06516E;
+    cursor: pointer;
+    display: inline-block;
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+    font-weight: 500;
+    height: 5rem;
+    width: 30%;
+    line-height: 20px;
+    list-style: none;
+    margin: 1px;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+.dropdown-location-warehouse-name {
+font-size: 1.3rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+.dropdown-div {
+    display: flex;
+    background-color: #CEEBEE;
+    border-radius: 5px;
+    /*padding: 1rem 1rem;*/
+    cursor: pointer;
+}
+
+.dropdown-div h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.dropdown-list {
+    position: absolute;
+    margin-top: 10px;
+    padding: 2px;
+    background-color: #CEEBEE;
+    border-radius: 0.5rem;
+    left: 0;
+    right: 0;
+    max-height: calc(100vh - 134px - 160px);
+    cursor: pointer;
+}
+
+
+.dropdown-location-warehouse-image {
+
+}
+
+.dropdown-location-warehouse-title {
+
+}
+
+@media (max-width: 820px) {
+    .dropdown-location-warehouse-image {
+        display: none;
+    }
+
+    .dropdown-location-warehouse-title {
+        display: none;
+    }
+
+    .validate_popup_responsive {
+        margin: 8rem auto 0;
+        padding: 20px;
+        background: #fff;
+        border-radius: 5px;
+        max-width: 820px;
+        width: 90%;
+        min-width: 300px;
+        position: relative;
+        transition: all 5s ease-in-out;
+    }
+
+    .validate-popup-button-discard-responsive {
+
+        font-family: 'Argentum Sans';
+        background-color: #F0F0F0;
+        border-radius: 5px;
+        border: #06516E solid 2px;
+        box-sizing: border-box;
+        color: #06516E;
+        cursor: pointer;
+        display: inline-block;
+        letter-spacing: 1px;
+        font-size: 1.3rem;
+        font-weight: 500;
+        height: 5rem;
+        max-width: 200px;
+        min-width: 100px;
+        line-height: 20px;
+        list-style: none;
+        margin: 1px;
+        outline: none;
+        padding: 10px 16px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: color 100ms;
+        vertical-align: baseline;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+
+    .validate-popup-button-responsive {
+
+        font-family: 'Argentum Sans';
+        background-color: #06516E;
+        border-radius: 5px;
+        border-style: none;
+        box-sizing: border-box;
+        color: white;
+        cursor: pointer;
+        letter-spacing: 1px;
+        display: inline-block;
+        font-size: 1.3rem;
+        font-weight: 500;
+        height: 5rem;
+        max-width: 200px;
+        min-width: 100px;
+        line-height: 20px;
+        list-style: none;
+        margin: 1px;
+        outline: none;
+        padding: 10px 16px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: color 100ms;
+        vertical-align: baseline;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+
+}
+
+@media (max-width: 540px) {
+    .dropdown-location-warehouse-name {
+        margin: 0;
+        font-size: 1.15rem;
+    }
+}

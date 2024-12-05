@@ -114,7 +114,7 @@ class ProductProductBarcodeApp(models.Model):
             "sale_delay": self.sale_delay,
             "volume_uom_name": self.volume_uom_name,
             "weight_uom_name": self.weight_uom_name,
-            "hq_qty": self.env["product.product"].browse(self.id).pos_stock_ids.filtered(lambda item: item.location == 'WH-H/Stock').mapped('available_quantity')[0],
+            "hq_qty": 1,
         }
         warehouse_list = [
             {'name': w.name,

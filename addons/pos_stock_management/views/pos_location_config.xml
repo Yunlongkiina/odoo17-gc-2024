@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+        <record id="view_webhook_local_stock_general_config_form" model="ir.ui.view">
+            <field name="name">pos.stock.location.general.config.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="1"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="inside">
+                    <app data-string="PoS General Settings" string="PoS General Settings" name="pos_stock_general_settings">
+                        <div class="app_settings_block o_not_app" data-string="PoS General Settings" data-key="pos_stock_general_settings">
+                            <div class="row mt16 o_settings_container" id="pos_stock_global_configuration">
+                                <group name='multi_stock_settings' string='General Settings'>
+                                    <field name="is_middle_server_or_not"/>
+                                    <field name="is_C_server_or_not"/>
+                                </group>
+                            </div>
+                        </div>
+                    </app>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_webhook_local_stock_config_mapping_form" model="ir.ui.view">
+            <field name="name">pos.stock.location.mapping.form</field>
+            <field name="model">pos.stock.location.mapping.config</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name='login' required='1'/>
+                                <field name='password' required='1' password="True"/>
+                                <field name='api_key' required='1'/>
+                                <field name='access_token'/>
+                                <button
+                                        type="object"
+                                        name="get_mapping_target_server_access_token"
+                                        string="Generate Token"/>
+                            </group>
+                            <group>
+                                <field name='is_middle_server_or_not' invisible="1"/>
+                                <field name='local_location' required='1' invisible="is_middle_server_or_not==True"/>
+                                <field name='target_server_ip' required='1'/>
+                                <field name='target_server_type' required='1'/>
+                                <field name='target_server_location' required='1' invisible="is_middle_server_or_not==True"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_webhook_local_stock_config_mapping_tree" model="ir.ui.view">
+            <field name="name">pos.stock.location.mapping.tree</field>
+            <field name="model">pos.stock.location.mapping.config</field>
+            <field name="arch" type="xml">
+                <!--editable="top"-->
+                <tree string="PoS Location Mappings">
+                    <!--is_middle_server_or_not==True-->
+                    <field name='is_middle_server_or_not' column_invisible="1"/>
+                    <field name='local_location' invisible="is_middle_server_or_not==True"/>
+                    <field name='target_server_ip'/>
+                    <field name='target_server_type'/>
+                    <field name='target_server_location' invisible="is_middle_server_or_not==True"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_webhook_local_stock_config_tree" model="ir.ui.view">
+            <field name="model">pos.stock.location.config</field>
+            <field name="arch" type="xml">
+                <tree string="PoS Locations" editable="top">
+                    <field name='location'/>
+                    <field name='company_id'/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_webhook_local_stock_log_note_form" model="ir.ui.view">
+            <field name="name">pos.stock.error.log.form</field>
+            <field name="model">log.note</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name='target_server'/>
+                            <field name='record_type'/>
+                            <field name='payload_to_send'/>
+                            <field name='response_from_target_server'/>
+                            <field name='status_code'/>
+                            <field name='write_date'/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_webhook_local_stock_log_note_tree" model="ir.ui.view">
+            <field name="model">log.note</field>
+            <field name="arch" type="xml">
+                <tree string="Sync Error Log">
+                    <field name='write_date'/>
+                    <field name='target_server'/>
+                    <field name='record_type'/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_webhook_local_stock_config" model="ir.actions.act_window">
+            <field name="name">Multiple Stocks Setup to Display</field>
+            <field name="res_model">pos.stock.location.config</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_all': 1}</field>
+            <field name="view_id" ref="view_webhook_local_stock_config_tree"/>
+        </record>
+
+        <record id="action_webhook_local_stock_mapping_config" model="ir.actions.act_window">
+            <field name="name">Multiple Stocks Mapping</field>
+            <field name="res_model">pos.stock.location.mapping.config</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_all': 1}</field>
+            <field name="view_id" ref="view_webhook_local_stock_config_mapping_tree"/>
+        </record>
+
+        <record id="action_webhook_local_stock_general_config" model="ir.actions.act_window">
+            <field name="name">PoS General Settings</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_mode">form</field>
+            <field name="context">{'search_default_all': 1}</field>
+            <field name="view_id" ref="view_webhook_local_stock_general_config_form"/>
+        </record>
+
+        <record id="action_webhook_local_stock_log_note" model="ir.actions.act_window">
+            <field name="name">Multiple Stocks Sync Error Logs Note</field>
+            <field name="res_model">log.note</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_all': 1}</field>
+            <field name="view_id" ref="view_webhook_local_stock_log_note_tree"/>
+        </record>
+
+        <menuitem id="menu_pos_settings"
+                  name="PoS Stock Sync Settings"
+                  parent="rsa_sync.menu_rsa_webhook"/>
+
+        <menuitem id="menu_webhook_local_stock_config"
+                  name="Multiple Stocks Setup to Display"
+                  parent="menu_pos_settings"
+                  action="pos_stock_management.action_webhook_local_stock_config"/>
+        
+        <menuitem id="menu_webhook_local_stock_mapping_config"
+                  name="Multiple Stocks Mapping"
+                  parent="menu_pos_settings"
+                  action="pos_stock_management.action_webhook_local_stock_mapping_config"/>
+        
+        <menuitem id="menu_webhook_local_stock_general_config"
+                  name="PoS General Settings"
+                  parent="menu_pos_settings"
+                  action="pos_stock_management.action_webhook_local_stock_general_config"/>
+        
+        <menuitem id="menu_webhook_local_stock_log_note"
+                  name="Multiple Stocks Sync Error Log"
+                  parent="menu_pos_settings"
+                  action="pos_stock_management.action_webhook_local_stock_log_note"/>
+	</data>
+</odoo>

@@ -248,6 +248,7 @@ export class AddProductsPopUp extends Component {
         }
         this.state.part_details = product_data
         this.state.part_available = true
+        this.state.selected_part['hq_qty'] = data.product_data.hq_qty
         this.state.selected_part['virtual_available'] = data.product_data.virtual_available
 
     }

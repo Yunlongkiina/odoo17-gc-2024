@@ -1150,6 +1150,7 @@ export class ScanningDisplay extends Component {
                                 default_code: scanned_part[0].default_code,
                                 display_name: scanned_part[0].display_name,
                                 quantity: quantity,
+                                hq_qty: scanned_part[0].hq_qty,
                                 virtual_available: scanned_part[0].virtual_available,
                                 weight: scanned_part[0].weight,
                                 uom_id: scanned_part[0].uom_id[0]
@@ -1173,6 +1174,7 @@ export class ScanningDisplay extends Component {
                                     default_code: scanned_part[0].default_code,
                                     display_name: scanned_part[0].display_name,
                                     quantity: quantity,
+                                    hq_qty: scanned_part[0].hq_qty,
                                     virtual_available: scanned_part[0].virtual_available,
                                     weight: scanned_part[0].weight,
                                     uom_id: scanned_part[0].uom_id[0]
@@ -1194,6 +1196,7 @@ export class ScanningDisplay extends Component {
                                 default_code: scanned_part[0].default_code,
                                 display_name: scanned_part[0].display_name,
                                 quantity: quantity,
+                                hq_qty: scanned_part[0].hq_qty,
                                 virtual_available: scanned_part[0].virtual_available,
                                 weight: scanned_part[0].weight,
                                 uom_id: scanned_part[0].uom_id[0]
@@ -1225,6 +1228,7 @@ export class ScanningDisplay extends Component {
                                     default_code: scanned_part[0].default_code,
                                     display_name: scanned_part[0].display_name,
                                     quantity: quantity,
+                                    hq_qty: scanned_part[0].hq_qty,
                                     virtual_available: scanned_part[0].virtual_available,
                                     weight: scanned_part[0].weight,
                                     uom_id: scanned_part[0].uom_id[0]

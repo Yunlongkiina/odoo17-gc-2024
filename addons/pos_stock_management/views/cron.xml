@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <!--This cron is used for syncing stock of all products which are in stock-->
+        <record id="cron_sync_pos_in_stock_products" forcecreate="True" model="ir.cron">
+			<field name="name">Sync PoS Stock Info to Master</field>
+			<field name="user_id" ref="base.user_root"/>
+			<field name="interval_number">1</field>
+			<field name="interval_type">days</field>
+			<field name="numbercall">-1</field>
+			<field name="model_id" ref="model_pos_stock"/>
+			<field name="state">code</field>
+			<field name="code">model._daily_cron_sync_pos_non_zero_stock_to_middleware()</field>
+		</record>
+    </data>
+</odoo>

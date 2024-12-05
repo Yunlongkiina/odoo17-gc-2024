@@ -229,7 +229,7 @@
      </t>
 
     <t t-name="custom_barcode_app.BarcodeLineTransfer" owl="1">
-        <div t-if="props.inventory_line.data.quantity > 0" class="warehouse-operation-barcode-line" t-attf-id="barcode_line_{{props.inventory_line.id}}" t-on-click="()=>props.change_is_select(props.inventory_line)" t-attf-style="border:{{props.inventory_line.is_selected ? '4px solid ' : '4px solid transparent'}};margin: 0.5rem;font-family: 'Argentum Sans'; font-weight:500;" >
+        <div t-if="props.inventory_line.data.quantity > 0" class="warehouse-operation-barcode-line" t-attf-id="barcode_line_{{props.inventory_line.id}}" t-on-click="()=>props.change_is_select(props.inventory_line)" t-attf-style="border:{{props.inventory_line.is_selected ? '4px solid ' : '4px solid transparent'}};background-color:{{props.inventory_line.data.quantity > props.inventory_line.data.hq_qty ? 'red' : '#CEEBEE'}};margin: 0.5rem;font-family: 'Argentum Sans'; font-weight:500;" >
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
                 <div style="display: flex; flex-wrap: nowrap;">
                     <div style=" margin-right:10px; width:115px;height:80px;">
@@ -244,6 +244,8 @@
                             <span t-esc="props.inventory_line.data.quantity" style="padding: 2px 5px;background-color: #06516e;border-radius: 3px;color: white;"/>
                             <span>    Local: </span>
                             <span t-esc="props.inventory_line.data.virtual_available" style="padding: 2px 5px;background-color: #06516e;border-radius: 3px;color: white;"/>
+                            <span>    HQ: </span>
+                            <span t-esc="props.inventory_line.data.hq_qty" style="padding: 2px 5px;background-color: #06516e;border-radius: 3px;color: white;"/>
                         </p>
                     </div>
                 </div>

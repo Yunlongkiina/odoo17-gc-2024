@@ -86,8 +86,10 @@ class ProductProductBarcodeApp(models.Model):
         currency_id = self.env.company.currency_id
         currency_data = {'symbol': currency_id.symbol, 'name': currency_id.name, 'position': currency_id.position}
         pricelists = self.env['product.pricelist'].search([])
-        #price_per_pricelist_id = pricelists._price_get(self, quantity)
-        pricelist_list = []
+        price_per_pricelist_id = pricelists._price_get(self, quantity)
+        pricelist_list = [{'name': pl.name, 'price': price_per_pricelist_id[pl.id],
+                           'currency_data': {'name': pl.currency_id.name, 'symbol': pl.currency_id.symbol,
+                                             'position': pl.currency_id.position}} for pl in pricelists]
         # print(price_per_pricelist_id)
         # pricelist_list =[]
 
@@ -112,7 +114,7 @@ class ProductProductBarcodeApp(models.Model):
             "sale_delay": self.sale_delay,
             "volume_uom_name": self.volume_uom_name,
             "weight_uom_name": self.weight_uom_name,
-            "hq_qty":0,
+            "hq_qty": self.env["product.product"].browse(self.id).pos_stock_ids.filtered(lambda item: item.location == 'WH-H/Stock').mapped('available_quantity')[0],
         }
         warehouse_list = [
             {'name': w.name,
@@ -134,8 +136,16 @@ class ProductProductBarcodeApp(models.Model):
              'uom': self.uom_name}
             for w in self.env['stock.warehouse'].search([])]
 
-        pos_stock_list = []
+        print(warehouse_list)
+        pos_stock_list = [
+            {'name': ps.location,
+             'id': ps.id,
+             'quantity': ps.available_quantity,
+            }
+            for ps in self.env["product.product"].browse(self.id).pos_stock_ids]
         
+        print(pos_stock_list)
+
         # Warehouses
         warehouse_list_without_zero_stock = [
             {'name': w.name,
@@ -192,7 +202,7 @@ class ProductProductBarcodeApp(models.Model):
             'warehouse_list_without_zero_stock': warehouse_list_without_zero_stock,
             'suppliers': supplier_list,
             'variants': variant_list,
-            'price_list': None,
+            'price_list': pricelist_list,
             'user_id': user_id,
             'company_id': company_id,
             'currency_data': currency_data,
@@ -692,7 +702,9 @@ class GetInventoryTransferData(models.Model):
                 'tracking': product.tracking,
                 'qty_available': product.qty_available,
                 'name': product.name,
-                'hq_qty': 0,
+                'hq_qty': list({hq_qty.available_quantity for hq_qty in self.env['pos.stock'].search(
+                              [('prod_prod_id', '=', product.id),('location', '=', 'WH-H/Stock')]) if
+                                hq_qty.id})[0],
                 "virtual_available": product.virtual_available,
             })
         elif len(product) == 0:

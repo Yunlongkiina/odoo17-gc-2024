@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_log_note,access_log_note,model_log_note,base.group_user,1,1,1,1
+access_pos_stock,access_pos_stock,model_pos_stock,base.group_user,1,1,1,1
+access_pos_stock_location_config,access_pos_stock_location_config,model_pos_stock_location_config,base.group_user,1,1,1,1
+access_pos_stock_location_mapping_config,access_pos_stock_location_mapping_config,model_pos_stock_location_mapping_config,base.group_user,1,1,1,1

@@ -136,16 +136,8 @@ class ProductProductBarcodeApp(models.Model):
              'uom': self.uom_name}
             for w in self.env['stock.warehouse'].search([])]
 
-        print(warehouse_list)
-        pos_stock_list = [
-            {'name': ps.location,
-             'id': ps.id,
-             'quantity': ps.available_quantity,
-            }
-            for ps in self.env["product.product"].browse(self.id).pos_stock_ids]
+        pos_stock_list = []
         
-        print(pos_stock_list)
-
         # Warehouses
         warehouse_list_without_zero_stock = [
             {'name': w.name,

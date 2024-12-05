@@ -286,7 +286,7 @@
                                      <p style="padding-left: 10px;margin:0;">SALES PRICE</p>
                                 </div>
                         </div>
-                        <t t-foreach="props.warehouse_details.price_lists" t-as="price_list" t-key="price_list_index">
+                        <!-- <t t-foreach="props.warehouse_details.price_lists" t-as="price_list" t-key="price_list_index">
                             <div style="display:flex; width:100%;background-color:#F3F3F3;padding: 8px 16px;">
                                 <div style="width:60%;">
                                      <p style="padding-left: 10px;margin:0;"><span t-esc="price_list.name"/></p>
@@ -295,7 +295,8 @@
                                      <p style="padding-left: 10px;margin:0;"><span t-if="price_list.currency_data.position =='before'" t-esc="price_list.currency_data.symbol"/><span t-esc="price_list.price"/><span t-if="price_list.currency_data.position =='after'" t-esc="price_list.currency_data.symbol"/></p>
                                 </div>
                             </div>
-                        </t>
+                        </t> -->
+
                         <div style="padding:10px;"></div>
 
 

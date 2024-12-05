@@ -86,10 +86,8 @@ class ProductProductBarcodeApp(models.Model):
         currency_id = self.env.company.currency_id
         currency_data = {'symbol': currency_id.symbol, 'name': currency_id.name, 'position': currency_id.position}
         pricelists = self.env['product.pricelist'].search([])
-        price_per_pricelist_id = pricelists._price_get(self, quantity)
-        pricelist_list = [{'name': pl.name, 'price': price_per_pricelist_id[pl.id],
-                           'currency_data': {'name': pl.currency_id.name, 'symbol': pl.currency_id.symbol,
-                                             'position': pl.currency_id.position}} for pl in pricelists]
+        #price_per_pricelist_id = pricelists._price_get(self, quantity)
+        pricelist_list = []
         # print(price_per_pricelist_id)
         # pricelist_list =[]
 
@@ -202,7 +200,7 @@ class ProductProductBarcodeApp(models.Model):
             'warehouse_list_without_zero_stock': warehouse_list_without_zero_stock,
             'suppliers': supplier_list,
             'variants': variant_list,
-            'price_list': pricelist_list,
+            'price_list': None,
             'user_id': user_id,
             'company_id': company_id,
             'currency_data': currency_data,

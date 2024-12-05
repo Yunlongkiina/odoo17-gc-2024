@@ -112,7 +112,7 @@ class ProductProductBarcodeApp(models.Model):
             "sale_delay": self.sale_delay,
             "volume_uom_name": self.volume_uom_name,
             "weight_uom_name": self.weight_uom_name,
-            "hq_qty": self.env["product.product"].browse(self.id).pos_stock_ids.filtered(lambda item: item.location == 'WH-H/Stock').mapped('available_quantity')[0],
+            "hq_qty":0,
         }
         warehouse_list = [
             {'name': w.name,
@@ -134,16 +134,8 @@ class ProductProductBarcodeApp(models.Model):
              'uom': self.uom_name}
             for w in self.env['stock.warehouse'].search([])]
 
-        print(warehouse_list)
-        pos_stock_list = [
-            {'name': ps.location,
-             'id': ps.id,
-             'quantity': ps.available_quantity,
-            }
-            for ps in self.env["product.product"].browse(self.id).pos_stock_ids]
+        pos_stock_list = []
         
-        print(pos_stock_list)
-
         # Warehouses
         warehouse_list_without_zero_stock = [
             {'name': w.name,
@@ -700,9 +692,7 @@ class GetInventoryTransferData(models.Model):
                 'tracking': product.tracking,
                 'qty_available': product.qty_available,
                 'name': product.name,
-                'hq_qty': list({hq_qty.available_quantity for hq_qty in self.env['pos.stock'].search(
-                              [('prod_prod_id', '=', product.id),('location', '=', 'WH-H/Stock')]) if
-                                hq_qty.id})[0],
+                'hq_qty': 0,
                 "virtual_available": product.virtual_available,
             })
         elif len(product) == 0:

@@ -65,14 +65,14 @@
                              </div>
                          </div>
                         <div>
-                            <div style=" margin:20px;height:200px;display:none;">
+                            <div style=" margin:20px;height:200px;">
                                 <img t-attf-src="{{imageUrl(props.edit_popup_part.product_id,props.edit_popup_part.write_date)}}"
                                                  style="object-fit:contain; max-height: 200px; max-width:500px;border-radius:3px;"/>
                             </div>
                         </div>
 
                     </div>
-                    <div style="width:100%;margin:2rem 0rem;display:none;">
+                    <div style="width:100%;margin:2rem 0rem;">
                             <table class="data-table-responsive" style="width:100%">
                                 <tr>
                                     <td style="font-weight: 500;">Product Type</td>
@@ -99,10 +99,10 @@
                             </table>
                         </div>
 
-                    <div style="display:none;">
+                    <div>
                         <WarehouseDetailsTable warehouse_details="state.part_details"/>
                     </div>
-                    <div style="height:40vh;width:100%;display:none;"></div>
+                    <div style="height:40vh;width:100%"></div>
 
                 </div>
 

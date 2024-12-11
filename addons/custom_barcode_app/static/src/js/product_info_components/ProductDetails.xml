@@ -76,7 +76,7 @@
                                             </table>
                                         </div>
 
-                                    <div style="text-align:right;width:49%;">
+                                    <div style="text-align:right;width:49%;display:none">
                                                <div>
                                                     <div style=" margin:20px;height: 220px;">
                                                         <img t-attf-src="{{imageUrl(state.part.product_details[0].id,state.part.product_details[0].write_date)}}"
@@ -85,12 +85,12 @@
                                                 </div>
                                         </div>
                                     </div>
-                                <div style="margin: 1rem 0;">
+                                <div style="margin: 1rem 0;display:none">
                                         <div>
                                             <WarehouseDetailsTable warehouse_details="state.part"/>
                                         </div>
                                     </div>
-                                <div style="height:40vh;width:100%"></div>
+                                <div style="height:40vh;width:100%;display:none"></div>
                                 </div>
 
                         </div>

@@ -173,7 +173,7 @@
                             <t t-if="state.parts.length>0">
                                 <div style="display:flex;flex-wrap:wrap;gap:8px;background-color: #F3F3F3;">
                                     <t t-foreach="state.parts" t-as="part" t-key="part_index">
-                                            <div style="font-family: 'Argentum Sans'; width:50vw; background-color:white; "
+                                            <div style="font-family: 'Argentum Sans'; width:40vw; background-color:white; "
                                                  t-on-click="()=> this.selectProduct(part)">
                                                     <div style="">
 
@@ -217,7 +217,7 @@
                             <t t-if="state.parts.length>0">
                                 <div style="display:flex;flex-wrap:wrap;gap:8px;background-color: #F3F3F3;">
                                     <t t-foreach="state.parts" t-as="part" t-key="part_index">
-                                            <div style="font-family: 'Argentum Sans'; width:50vw; background-color:white; "
+                                            <div style="font-family: 'Argentum Sans'; width:40vw; background-color:white; "
                                                  t-on-click="()=> this.selectProduct(part)">
                                                     <div style="">
 

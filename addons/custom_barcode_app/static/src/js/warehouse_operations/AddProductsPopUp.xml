@@ -173,7 +173,7 @@
                             <t t-if="state.parts.length>0">
                                 <div style="display:flex;flex-wrap:wrap;gap:8px;background-color: #F3F3F3;">
                                     <t t-foreach="state.parts" t-as="part" t-key="part_index">
-                                            <div style="font-family: 'Argentum Sans'; width:140px; background-color:white; "
+                                            <div style="font-family: 'Argentum Sans'; width:50vw; background-color:white; "
                                                  t-on-click="()=> this.selectProduct(part)">
                                                     <div style="">
 
@@ -186,7 +186,7 @@
                                                                    style="font-size: 1.05rem;text-align: left;overflow: hidden;margin:0;font-weight: 400;">
                                                                     <t t-esc="part.default_code"/>
                                                                 </p>
-                                                            <p style="font-size: 1.15rem;overflow: hidden;margin:0;font-weight: 600;">
+                                                            <p style="font-size: 1rem;overflow: hidden;margin:0;font-weight: 600;">
                                                                     <t t-esc="part.name"/>
                                                                 </p>
 
@@ -217,7 +217,7 @@
                             <t t-if="state.parts.length>0">
                                 <div style="display:flex;flex-wrap:wrap;gap:8px;background-color: #F3F3F3;">
                                     <t t-foreach="state.parts" t-as="part" t-key="part_index">
-                                            <div style="font-family: 'Argentum Sans'; width:140px; background-color:white; "
+                                            <div style="font-family: 'Argentum Sans'; width:50vw; background-color:white; "
                                                  t-on-click="()=> this.selectProduct(part)">
                                                     <div style="">
 
@@ -230,7 +230,7 @@
                                                                    style="font-size: 1.05rem;text-align: left;overflow: hidden;margin:0;font-weight: 400;">
                                                                 <t t-esc="part.default_code"/>
                                                             </p>
-                                                            <p style="font-size: 1.15rem;overflow: hidden;margin:0;font-weight: 600;">
+                                                            <p style="font-size: 1rem;overflow: hidden;margin:0;font-weight: 600;">
                                                                 <t t-esc="part.name"/>
                                                             </p>
 

@@ -6,16 +6,17 @@
             <div style="display: flex; justify-content: center; align-items: center;height:100%; background-color:#06516E; font-family:Argentum Sans;">
 
                 <div class="main-screen-container">
-                    <h1 style="margin-bottom:20px;font-weight: 600;font-size: 2.5rem;">Barcode Scanning</h1>
-                    <div>
+                    <!-- <h1 style="margin-bottom:20px;font-weight: 600;font-size: 2.5rem;">Barcode Scanning</h1> -->
+                    <!-- <div>
                         <i class="fa fa-barcode" style="text-align:center; font-size:120px;"/>
-                    </div>
+                    </div> 
                     <ul class="text-left mb-sm-5 pl-4" style="text-align:left !important; display: inline-block;font-size:1.2rem;">
                         <li>Scan an <b>operation type</b> to create a new transfer.</li>
                         <li>Scan a <b>location</b> to create a new transfer from this location.</li>
                         <li>Scan a <b>document</b> to open it.</li>
                         <li>Scan a <b>product</b> to show its location and quantity.</li>
                     </ul>
+                    -->
                     <div style="display: flex; flex-wrap: wrap;justify-content: center;gap: 10px 10px; margin-top:20px;margin-bottom:20px;">
                         <button t-on-click="startCreateTransfer" class="button-1" style="display: flex; flex-wrap: wrap;justify-content: center;align-items:center;">
                             <div>

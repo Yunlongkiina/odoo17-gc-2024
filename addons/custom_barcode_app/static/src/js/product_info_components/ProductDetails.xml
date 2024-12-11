@@ -85,7 +85,7 @@
                                                 </div>
                                         </div>
                                     </div>
-                                <div style="margin: 2.5rem 0;">
+                                <div style="margin: 1rem 0;">
                                         <div>
                                             <WarehouseDetailsTable warehouse_details="state.part"/>
                                         </div>

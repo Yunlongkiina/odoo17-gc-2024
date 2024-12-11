@@ -17,8 +17,7 @@
                     </div>
                     <div  style="display:flex;justify-content: space-between;flex-wrap: wrap-reverse;">
                          <div style="display:flex;height: 412px;">
-                             <div class="calculator"
-                                  style=" border: 1px solid #ccc;border-radius: 5px;width: 350px; margin-top:20px;">
+                             <div class="calculator" style=" border: 1px solid #ccc;border-radius: 5px;width: 350px; margin-top:20px;">
                                  <div style="display:flex;">
                                      <input id='input_value' type="text" class="calculator-screen z-depth-1"
                                                            t-att-value="state.display_value" disabled="disabled"
@@ -66,14 +65,14 @@
                              </div>
                          </div>
                         <div>
-                            <div style=" margin:20px;height: 200px;">
+                            <div style=" margin:20px;height: 200px;display:none;">
                                 <img t-attf-src="{{imageUrl(props.edit_popup_part.product_id,props.edit_popup_part.write_date)}}"
                                                  style="object-fit:contain; max-height: 200px; max-width:500px;border-radius:3px;"/>
                             </div>
                         </div>
 
                     </div>
-                    <div style="width:100%;margin: 2rem 0rem;">
+                    <div style="width:100%;margin: 2rem 0rem;display: none;">
                             <table class="data-table-responsive" style="width:100%">
                                 <tr>
                                     <td style="font-weight: 500;">Product Type</td>
@@ -100,10 +99,10 @@
                             </table>
                         </div>
 
-                    <div>
+                    <div style="display: none;">
                         <WarehouseDetailsTable warehouse_details="state.part_details"/>
                     </div>
-                    <div style="height:40vh;width:100%"></div>
+                    <div style="height:40vh;width:100%;display: none;"></div>
 
                 </div>
 

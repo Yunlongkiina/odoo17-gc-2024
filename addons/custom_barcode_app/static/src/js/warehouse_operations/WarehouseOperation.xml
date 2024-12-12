@@ -14,7 +14,7 @@
                                     <div style="display:flex; justify-content: space-evenly;margin-top: 20px;">
                                         <button class="validate-popup-button-discard-responsive" t-on-click="discardValidatePopUp">Discard</button>
                                         <button  class="validate-popup-button-responsive" t-on-click="applyTransfer">Apply</button>
-                                        <button  class="validate-popup-button-responsive" t-on-click="applyValidateTransfer">Validate</button>
+                                        <!-- <button  class="validate-popup-button-responsive" t-on-click="applyValidateTransfer">Validate</button> -->
                                     </div>
                                 </div>
                             </div>
@@ -222,10 +222,12 @@
             <div>
                 <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
                     <div style="display: flex; flex-wrap: nowrap;">
-                        <div style=" margin-right:10px; width:115px;height:80px;">
+
+                        <!-- <div style=" margin-right:10px; width:115px;height:80px;">
                             <img t-attf-src="{{props.image_url(props.inventory_line.data.product_id,props.inventory_line.data.write_date)}}"
                                              style="object-fit:contain;  max-height:80px; max-width:110px;"/>
-                        </div>
+                        </div> -->
+
                         <div style="">
                             <p class="warehouse-operation-display-name" style="">
                                 <span t-esc="props.inventory_line.data.display_name"/>

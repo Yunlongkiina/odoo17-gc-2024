@@ -16,75 +16,87 @@
                 </div>
                 <div style="overflow: auto;display: flex;justify-content: center;position: absolute;top: 84px;bottom: 0px;left: 0;right: 0;">
                     <div class="product-info-container">
-                        <div>
-                            <h1 style="background-color: #06516e;padding: 10px;border-radius: 5px;font-weight: 600;color: white;"><span t-esc="state.part_details.product_details[0].display_name"/></h1>
+                        <div style="display:flex;flex-direction:row">
+                            <h1 style="background-color: #06516e;padding: 10px;border-radius: 5px;font-weight: 600;color: white;width: 70vw">
+                                <span t-esc="state.part_details.product_details[0].display_name"/>
+                            </h1>
+                            <input id='input_value' type="text" class="calculator-screen z-depth-1"
+                                t-att-value="state.display_value" disabled="disabled"
+                                style="width: 30vw;background-color: #252525;color: #fff;font-size: 2rem;text-align: center;"/>
+
                         </div>
+                        <!-- <div style="display:flex;">
+                            <input id='input_value' type="text" class="calculator-screen z-depth-1"
+                                    t-att-value="state.display_value" disabled="disabled"
+                                    style="width: 350px; height: 60px;border: none;background-color: #252525;color: #fff;text-align: right;padding-right: 20px;padding-left: 10px;font-size: 4rem;"/>
+                        </div> -->
+
                         <div style="display:flex;justify-content: space-between;flex-wrap: wrap-reverse;">
                             <div style="">
                                 <div style="display:flex;height: 412px;">
-                                    <div class="calculator"
-                                         style=" border: 1px solid #ccc;border-radius: 5px;width: 350px; margin-top:20px;">
-                                            <div style="display:flex;">
-                                                <input id='input_value' type="text" class="calculator-screen z-depth-1"
-                                                       t-att-value="state.display_value" disabled="disabled"
-                                                       style="width: 350px; height: 60px;border: none;background-color: #252525;color: #fff;text-align: right;padding-right: 20px;padding-left: 10px;font-size: 4rem;"/>
+                                    <div class="calculator" style=" border: 1px solid #ccc;border-radius: 5px;width: 350px; margin-top:20px;">
+                                        <!-- <div style="display:flex;">
+                                            <input id='input_value' type="text" class="calculator-screen z-depth-1"
+                                                    t-att-value="state.display_value" disabled="disabled"
+                                                    style="width: 350px; height: 60px;border: none;background-color: #252525;color: #fff;text-align: right;padding-right: 20px;padding-left: 10px;font-size: 4rem;"/>
+                                        </div> -->
+                                        <!-- Number Pad -->
+                                        <div>
+                                            <div style=" display: grid;grid-template-columns: repeat(3, 1fr);grid-gap: 10px;padding-left: 20px;">
+                                                <button type="button" value="7" class="operator btn btn-info"
+                                                        style=" height: 55px; width:55px;font-size: 2rem!important;"
+                                                        t-on-click="digitValue">7</button>
+                                                <button type="button" value="8" class="operator btn btn-info"
+                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        t-on-click="digitValue">8</button>
+                                                <button type="button" value="9" class="operator btn btn-info"
+                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        t-on-click="digitValue">9</button>
+
+                                                <button type="button" value="4" class="operator btn btn-info"
+                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        t-on-click="digitValue">4</button>
+                                                <button type="button" value="5" class="operator btn btn-info"
+                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        t-on-click="digitValue">5</button>
+                                                <button type="button" value="6" class="operator btn btn-info"
+                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        t-on-click="digitValue">6</button>
+
+
+                                                <button type="button" value="1" class="operator btn btn-info"
+                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        t-on-click="digitValue">1</button>
+                                                <button type="button" value="2" class="operator btn btn-info"
+                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        t-on-click="digitValue">2</button>
+                                                <button type="button" value="3" class="operator btn btn-info"
+                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        t-on-click="digitValue">3</button>
+
+
+                                                <button type="button" value="0" class="operator btn btn-info"
+                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        t-on-click="digitValue">0</button>
+                                                <button type="button" class="decimal function btn btn-secondary"
+                                                        value="." t-on-click="selectDot"
+                                                        style=" height: 55px;width:55px;font-size: 2rem!important;">.</button>
+                                                <button type="button"
+                                                        class="all-clear function btn btn-danger btn-sm"
+                                                        value="clear"
+                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        t-on-click="clearLastDigit"><i class="fa fa-arrow-left"/></button>
+
                                             </div>
-                                        <div style="display:flex;">
-                                                <div style=" display: grid;grid-template-columns: repeat(3, 1fr);grid-gap: 10px;padding: 20px 0px 10px 20px;">
-                                                    <button type="button" value="7" class="operator btn btn-info"
-                                                            style=" height: 55px; width:55px;font-size: 2rem!important;"
-                                                            t-on-click="digitValue">7</button>
-                                                    <button type="button" value="8" class="operator btn btn-info"
-                                                            style=" height: 55px;width:55px;font-size: 2rem!important;"
-                                                            t-on-click="digitValue">8</button>
-                                                    <button type="button" value="9" class="operator btn btn-info"
-                                                            style=" height: 55px;width:55px;font-size: 2rem!important;"
-                                                            t-on-click="digitValue">9</button>
-
-                                                    <button type="button" value="4" class="operator btn btn-info"
-                                                            style=" height: 55px;width:55px;font-size: 2rem!important;"
-                                                            t-on-click="digitValue">4</button>
-                                                    <button type="button" value="5" class="operator btn btn-info"
-                                                            style=" height: 55px;width:55px;font-size: 2rem!important;"
-                                                            t-on-click="digitValue">5</button>
-                                                    <button type="button" value="6" class="operator btn btn-info"
-                                                            style=" height: 55px;width:55px;font-size: 2rem!important;"
-                                                            t-on-click="digitValue">6</button>
-
-
-                                                    <button type="button" value="1" class="operator btn btn-info"
-                                                            style=" height: 55px;width:55px;font-size: 2rem!important;"
-                                                            t-on-click="digitValue">1</button>
-                                                    <button type="button" value="2" class="operator btn btn-info"
-                                                            style=" height: 55px;width:55px;font-size: 2rem!important;"
-                                                            t-on-click="digitValue">2</button>
-                                                    <button type="button" value="3" class="operator btn btn-info"
-                                                            style=" height: 55px;width:55px;font-size: 2rem!important;"
-                                                            t-on-click="digitValue">3</button>
-
-
-                                                    <button type="button" value="0" class="operator btn btn-info"
-                                                            style=" height: 55px;width:55px;font-size: 2rem!important;"
-                                                            t-on-click="digitValue">0</button>
-                                                    <button type="button" class="decimal function btn btn-secondary"
-                                                            value="." t-on-click="selectDot"
-                                                            style=" height: 55px;width:55px;font-size: 2rem!important;">.</button>
-                                                    <button type="button"
-                                                            class="all-clear function btn btn-danger btn-sm"
-                                                            value="clear"
-                                                            style=" height: 55px;width:55px;font-size: 2rem!important;"
-                                                            t-on-click="clearLastDigit"><i class="fa fa-arrow-left"/></button>
-
-                                                </div>
-                                            <div style="display: grid;grid-template-columns: repeat(2, 1fr);grid-gap: 10px;padding: 20px 10px 10px 10px;">
+                                            <!-- <div style="display: grid;grid-template-columns: repeat(2, 1fr);grid-gap: 10px;padding: 20px 10px 10px 10px;">
                                                     <button type="button" value="2" class="operator btn btn-info"
                                                             style=" height: 55px;width:55px;font-size: 2rem!important;"
                                                             t-on-click="plusOne">+1</button>
                                                     <button type="button" value="3" class="operator btn btn-info"
                                                         style=" height: 55px;width:55px;font-size: 2rem!important;"
                                                         t-on-click="minusOne">-1</button>
-                                            </div>
-                                            </div>
+                                            </div> -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -207,6 +219,7 @@
                 </t>
             </div>
     </t>
+    
     <t t-name="custom_barcode_app.SearchBar1" owl="1">
             <div class="search-bar-container-1">
                 <input class="search-bar-input" type="text" placeholder="Search The Product...." t-on-input="setQuery"
@@ -253,7 +266,7 @@
     </t>
 
     <t t-name="custom_barcode_app.WarehouseDetailsTable" owl="1">
-        <div style="">
+        <!-- <div style="">
             <div style="font-family: Lato;">
                 <div style="display:flex;flex-flow: row wrap;">
                     <div style="flex: 1 1 auto; width:550px;background-color: #f3f3f3;border-radius: 5px;margin:0.5rem; font-size:14px;color: rgb(74, 74, 74);box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px 0px;letter-spacing: 1px;">
@@ -286,7 +299,7 @@
                                      <p style="padding-left: 10px;margin:0;">SALES PRICE</p>
                                 </div>
                         </div>
-                        <!-- <t t-foreach="props.warehouse_details.price_lists" t-as="price_list" t-key="price_list_index">
+                       <t t-foreach="props.warehouse_details.price_lists" t-as="price_list" t-key="price_list_index">
                             <div style="display:flex; width:100%;background-color:#F3F3F3;padding: 8px 16px;">
                                 <div style="width:60%;">
                                      <p style="padding-left: 10px;margin:0;"><span t-esc="price_list.name"/></p>
@@ -295,12 +308,8 @@
                                      <p style="padding-left: 10px;margin:0;"><span t-if="price_list.currency_data.position =='before'" t-esc="price_list.currency_data.symbol"/><span t-esc="price_list.price"/><span t-if="price_list.currency_data.position =='after'" t-esc="price_list.currency_data.symbol"/></p>
                                 </div>
                             </div>
-                        </t> -->
-
+                        </t> 
                         <div style="padding:10px;"></div>
-
-
-
                     </div>
                     <div style="flex: 1 1 auto; width:550px;background-color: #06516e;margin:0.5rem;color: white;letter-spacing:1px;border-radius: 5px;box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 4px 0px;">
                         <div style="display:flex; padding: 10px 20px 0px 20px;">
@@ -360,7 +369,7 @@
                                     <p>Quantity</p>
                                 </div>
                             </div>
-                            <!-- <t t-foreach="props.warehouse_details.pos_stock_list" t-as="pos_stock_list" t-key="pos_stock_list_index" >
+                            <t t-foreach="props.warehouse_details.pos_stock_list" t-as="pos_stock_list" t-key="pos_stock_list_index" >
                                 <div style="display:flex; width:100%;padding: 8px 16px;font-size: 15px;">
                                     <div style="width:55%;">
                                        <p><span t-esc="pos_stock_list.name"/></p>
@@ -369,7 +378,7 @@
                                        <p><span t-esc="pos_stock_list.quantity"/></p>
                                     </div>
                                 </div>
-                            </t> -->
+                            </t>
                             <div style="padding:10px;"></div>
                         </div>
                     </div>
@@ -471,9 +480,9 @@
                     </div>
                 </div>
             </div>
-
-        </div>
+        </div> -->
     </t>
+    
     <t t-name="custom_barcode_app.CollapsableRow" owl="1">
         <div style="font-size: 15px; font-weight:400;">
                 <div class="collapse-row" t-on-click="clickExpand">

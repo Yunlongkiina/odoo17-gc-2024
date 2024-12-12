@@ -71,7 +71,7 @@
                         </div>
                    </div>
 
-                    <div style="display:flex;justify-content:space-between;background-color:#4EC1E0;flex-direction: row-reverse;">
+                    <!-- <div style="display:flex;justify-content:space-between;background-color:#4EC1E0;flex-direction: row-reverse;">
                         <div class="mobile-tab-inventory-adjustment-enable" style="">
                                 <div t-on-click="backPage"
                                      style="margin: 7px; align-items:center;display: flex;">
@@ -87,7 +87,7 @@
                         <div style="margin: 5px 5px 5px 5px;display:flex;align-items:center">
                             <SortByInventoryAdjustment sort_by="state.sort_by" select_sort_by="(selected_item) => this.selectSortBy(selected_item)"/>
                         </div>
-                    </div>
+                    </div> -->
 
                     <div t-ref="barcodeLineBox"  t-if="state.display_parts.length == state.total_pages" style="overflow-y :auto; height:100%;">
                         <div t-ref="barcodeLine" >
@@ -114,10 +114,11 @@
         <div class="warehouse-operation-barcode-line" t-attf-id="barcode_line_{{props.inventory_line.id}}" t-on-click="()=> props.change_is_select(props.inventory_line)" t-attf-style="background-color:{{props.inventory_line.genuine_inventory_line ? '#CEEBEE' : '#F7C6C5' }}; border:{{props.inventory_line.is_selected ? '4px solid ' : '4px solid transparent'}};margin: 0.5rem;font-family: 'Argentum Sans'; font-weight:500;" >
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
                 <div style="display: flex; flex-wrap: nowrap;">
-                    <div style=" margin-right:10px; width:120px;height:80px;">
+                    <!-- <div style=" margin-right:10px; width:120px;height:80px;">
                         <img t-attf-src="{{props.image_url(props.inventory_line.data.product_id,props.inventory_line.data.write_date)}}"
                                          style="object-fit:contain;  max-height:80px; max-width:120px;"/>
-                    </div>
+                    </div> -->
+
                     <div style="">
                         <p class="warehouse-operation-display-name" >
                             <span t-esc="props.inventory_line.data.display_name"/>

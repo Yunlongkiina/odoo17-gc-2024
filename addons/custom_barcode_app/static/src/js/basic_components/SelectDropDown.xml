@@ -3,7 +3,7 @@
 <templates xml:space="preserve">
     <t t-name="custom_barcode_app.SelectDropDown" owl="1">
 
-        <div style="font-family: 'Argentum Sans';min-height: 100%; position:relative;width: 230px;" t-ref="root_location_drop_down">
+        <div style="font-family: 'Argentum Sans';min-height: 100%; position:relative;" t-ref="root_location_drop_down">
             <div t-on-click="clickDropDown" class="dropdown-div" style="align-items:center;padding: 8px 10px;">
                 <div class="dropdown-location-warehouse-image" style="margin: 0.4rem;">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 484.17 445.75" style="width: 42px;margin-right:0.41rem;">
@@ -28,7 +28,7 @@
                 </div>
                 <div style="text-align:left;">
                     <t t-if="props.selected_item.length>0">
-                        <h2 style="font-weight: 600;"><span t-esc="props.selected_item[0].warehouse_id[1]"/></h2>
+                        <!-- <h2 style="font-weight: 600;"><span t-esc="props.selected_item[0].warehouse_id[1]"/></h2> -->
                         <h2 style="font-size: 1.2rem;font-weight: 400;"><span t-esc="props.selected_item[0].name"/></h2>
                     </t>
                     <t t-else="">

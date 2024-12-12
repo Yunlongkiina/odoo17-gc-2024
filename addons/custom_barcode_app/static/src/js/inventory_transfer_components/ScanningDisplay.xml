@@ -12,7 +12,7 @@
                                             <div style="display:flex; justify-content: space-evenly;margin-top: 20px;">
                                                 <button class="validate-popup-button-discard-responsive" t-on-click="discardValidatePopUp">Discard</button>
                                                 <button t-if="state.groups.group_stock_user" class="validate-popup-button-responsive" t-on-click="applyTransfer">Apply</button>
-                                                <button t-if="state.groups.group_stock_manager" class="validate-popup-button-responsive" t-on-click="applyValidateTransfer">Validate</button>
+                                                <!-- <button t-if="state.groups.group_stock_manager" class="validate-popup-button-responsive" t-on-click="applyValidateTransfer">Validate</button> -->
                                             </div>
                                         </div>
                                 </div>
@@ -82,7 +82,7 @@
                                  class="warehouse-operation-back-button-left">
                                 <i class="fa fa-angle-left"></i>
                             </div>
-                                <div style="margin: 7px;border-radius: 5px;display: flex;align-items: center; margin-right:auto;">
+                                <div style="border-radius: 5px;display: flex;align-items: center; margin-right:auto;">
                                     <SelectDropDown data="operation_types" selected_item="state.selected_operation_type" select_action="(selected_operation)=> this.changeSelectOperationType(selected_operation)" details="{icon_path:'/custom_barcode_app/static/src/img/icons8-warehouse-42.png', default_text:'Operation Types'}" />
                                 </div>
                                 <div t-on-click="addLocationPopup" style="margin: 7px;align-items:center;display: flex;  ">
@@ -115,7 +115,8 @@
 
 
                         </div>
-                        <div style="display:flex;justify-content:space-between;background-color:#4EC1E0;flex-direction: row-reverse;align-items:center;">
+
+                        <!-- <div style="display:flex;justify-content:space-between;background-color:#4EC1E0;flex-direction: row-reverse;align-items:center;">
                             <div class="mobile-tab-inventory-adjustment-enable" style="">
                                 <div t-on-click="backPage"
                                      style="margin: 7px; align-items:center;display: flex;">
@@ -128,13 +129,12 @@
                                     <button style="background-color:#CEEBEE;padding: 0.2rem 1rem;border-radius: 0.4rem;font-size: 2rem;border: 0;"><i class="fa fa-angle-right"></i></button>
                                 </div>
                             </div>
+
                             <div style="margin: 5px 5px 5px 5px;">
                                 <SortBy sort_by="state.sort_by" select_sort_by="(sort_by)=>this.selectSortBy(sort_by)"/>
                             </div>
-                         </div>
-                        <div>
+                         </div> -->
 
-                        </div>
                          <t t-if="state.display_parts.length == state.total_pages">
                              <div style="height:100%;">
                                 <div t-ref="barcodeLineBox" style="overflow-y :auto; height:100%;" >
@@ -229,25 +229,29 @@
      </t>
 
     <t t-name="custom_barcode_app.BarcodeLineTransfer" owl="1">
-        <div t-if="props.inventory_line.data.quantity > 0" class="warehouse-operation-barcode-line" t-attf-id="barcode_line_{{props.inventory_line.id}}" t-on-click="()=>props.change_is_select(props.inventory_line)" t-attf-style="border:{{props.inventory_line.is_selected ? '4px solid ' : '4px solid transparent'}};background-color:{{props.inventory_line.data.quantity > props.inventory_line.data.hq_qty ? 'red' : '#CEEBEE'}};margin: 0.5rem;font-family: 'Argentum Sans'; font-weight:500;" >
+        <div t-if="props.inventory_line.data.quantity > 0" class="warehouse-operation-barcode-line" t-attf-id="barcode_line_{{props.inventory_line.id}}" t-on-click="()=>props.change_is_select(props.inventory_line)" t-attf-style="border:{{props.inventory_line.is_selected ? '4px solid ' : '4px solid transparent'}};margin: 0.5rem;font-family: 'Argentum Sans'; font-weight:500;" >
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
                 <div style="display: flex; flex-wrap: nowrap;">
-                    <div style=" margin-right:10px; width:115px;height:80px;">
+
+                    <!-- <div style=" margin-right:10px; width:115px;height:80px;">
                         <img t-attf-src="{{props.image_url(props.inventory_line.data.product_id,props.inventory_line.data.write_date)}}"
                                          style="object-fit:contain;  max-height:80px; max-width:110px;"/>
-                    </div>
-                    <div>
-                        <p style="font-size:1.4rem; color: black;">
-                            <span t-esc="props.inventory_line.data.display_name"/>
-                        </p>
-                        <p style="font-size: 1.4rem; color: black;">
+                    </div> -->
+
+                    <div style="display:flex;flex-direction:row;justify-content:space-between;">
+                        <p style="font-size: 1.4rem; color: black;width:20vw">
                             <span t-esc="props.inventory_line.data.quantity" style="padding: 2px 5px;background-color: #06516e;border-radius: 3px;color: white;"/>
-                            <span>    Local: </span>
+                            <!-- <span>    Local: </span>
                             <span t-esc="props.inventory_line.data.virtual_available" style="padding: 2px 5px;background-color: #06516e;border-radius: 3px;color: white;"/>
                             <span>    HQ: </span>
-                            <span t-esc="props.inventory_line.data.hq_qty" style="padding: 2px 5px;background-color: #06516e;border-radius: 3px;color: white;"/>
+                            <span t-esc="props.inventory_line.data.hq_qty" style="padding: 2px 5px;background-color: #06516e;border-radius: 3px;color: white;"/> -->
                         </p>
+                        <p style="font-size:1rem; color: black;width:70vw">
+                            <span t-esc="props.inventory_line.data.display_name"/>
+                        </p>
+
                     </div>
+
                 </div>
                 <div style="" class="button-panel-warehouse">
                     <div style="display: flex;align-items: center; justify-content: right;">

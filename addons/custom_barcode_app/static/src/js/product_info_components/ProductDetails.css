@@ -78,11 +78,11 @@
 
 .product-info-container {
     width: 80%;
-    margin-top: 1rem;
+    margin-top: 5px;
 }
 @media (max-width: 540px) {
 .product-info-container {
     width: 95%;
-    margin-top: 1rem;
+    margin-top: 5px;
 }
 }

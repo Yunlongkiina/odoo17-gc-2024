@@ -33,7 +33,7 @@
 
                         <div style="display:flex;justify-content: space-between;flex-wrap: wrap-reverse;">
                             <div style="">
-                                <div style="display:flex;height: 412px;">
+                                <div style="display:flex;">
                                     <div class="calculator" style=" border: 1px solid #ccc;border-radius: 5px;width: 350px; margin-top:20px;">
                                         <!-- <div style="display:flex;">
                                             <input id='input_value' type="text" class="calculator-screen z-depth-1"

@@ -4,7 +4,7 @@
     <t t-name="custom_barcode_app.AddProductsPopUp" owl="1">
         <div style="height:100%;position:relative;">
             <t t-if="state.part_available">
-                <div style="display:flex;text-align:center;background-color:#06516E;align-items: center; height:84px;">
+                <div style="display:flex;text-align:center;background-color:#06516E;align-items: center;">
                     <div t-on-click="props.back_button"
                          style="color : white; padding: 0.1rem 2rem; font-size: 50px;">
                         <i class="fa fa-angle-left"></i>
@@ -155,7 +155,7 @@
             </t>
             <t t-else="">
                 <div style="height:100%;background-color:#F3F3F3">
-                        <div style="display:flex;background-color:#06516E;align-items: center; height:84px;">
+                        <div style="display:flex;background-color:#06516E;align-items: center;">
                             <div t-on-click="props.back_button"
                          style="color : white; padding: 0.1rem 2rem; font-size: 50px;">
                         <i class="fa fa-angle-left"></i>
@@ -177,8 +177,8 @@
 
     <t t-name="custom_barcode_app.SearchBar" owl="1">
             <div style="min-height: 100%;max-width: 500px;margin-left:auto; margin-right:5px;" t-ref="root">
-                <input class="search-bar-input" type="text" placeholder="Search The Product...." t-on-input="setQuery"
-                       t-on-click="onFocus" style="width:100%; margin-left: auto;"/>
+                <input id="gc_input_above_pro_detailes" class="search-bar-input" type="text" placeholder="Search The Product...." t-on-input="setQuery"
+                       t-on-click="onFocus" style="width:100%; margin-left: auto;display:none"/>
                 <t t-if="state.is_visible">
                     <div class="search-bar-list"
                          style="overflow-y: auto;position:absolute;margin-top: 10px;border-radius: 0.5rem;right: 0;z-index: 10;max-height: calc(100vh - 134px - 160px);cursor: pointer;width:99vw; ">
@@ -188,11 +188,10 @@
                                             <div style="font-family: 'Argentum Sans'; width:40vw; background-color:white; "
                                                  t-on-click="()=> this.selectProduct(part)">
                                                     <div style="">
-
-                                                            <div style=" margin: 10px auto;display:flex;justify-content: center;align-items: center; width:128px;height:128px; background-color:white">
-                                                                <img t-attf-src="{{imageUrl(part.id,part.write_date)}}"
-                                                                     style="object-fit:contain; max-height:128px; max-width:128px;border-radius:3px;"/>
-                                                            </div>
+                                                        <div style=" margin: 10px auto;display:flex;justify-content: center;align-items: center; width:128px;height:128px; background-color:white">
+                                                            <img t-attf-src="{{imageUrl(part.id,part.write_date)}}"
+                                                                    style="object-fit:contain; max-height:128px; max-width:128px;border-radius:3px;"/>
+                                                        </div>
                                                         <div style="margin:0px 3px">
                                                                 <p t-if="part.default_code"
                                                                    style="font-size: 1.05rem;text-align: left;overflow: hidden;margin:0;font-weight: 400;">
@@ -201,9 +200,7 @@
                                                             <p style="font-size: 1rem;overflow: hidden;margin:0;font-weight: 600;">
                                                                     <t t-esc="part.name"/>
                                                                 </p>
-
                                                             </div>
-
                                                     </div>
                                             </div>
 
@@ -222,7 +219,7 @@
     
     <t t-name="custom_barcode_app.SearchBar1" owl="1">
             <div class="search-bar-container-1">
-                <input class="search-bar-input" type="text" placeholder="Search The Product...." t-on-input="setQuery"
+                <input id="add_product_input_gc" class="search-bar-input" type="text" placeholder="Search The Product...." t-on-input="setQuery"
                        t-on-click="onFocus" style="max-width:500px; margin:0px auto; border:1px solid #06516E"/>
                 <t t-if="state.is_visible">
                     <div class="search-bar-list"

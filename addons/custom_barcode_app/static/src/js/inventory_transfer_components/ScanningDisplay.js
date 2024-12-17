@@ -1766,6 +1766,19 @@ export class ScanningDisplay extends Component {
 
     addProductPopup = () => {
         Object.assign(this.state, {add_products_popup: true, edit_popup: false, scanning_display: false})
+        // Ensure this command runs after the state updates and the element is likely in the DOM
+        // const inputElement = document.getElementById("add_product_input_gc").focus();
+    setTimeout(() => {
+        const inputElement = document.getElementById("add_product_input_gc");
+        if (inputElement) {
+            inputElement.focus();
+        } else {
+            console.error("Element with ID 'add_product_input_gc' not found.");
+        }
+    }, 0);
+
+    // console.log('already clicked!!!!');
+        
     }
     backButtonAddProductPopup = () => {
         Object.assign(this.state, {add_products_popup: false, edit_popup: false, scanning_display: true})

@@ -2,7 +2,7 @@
 
 <templates xml:space="preserve">
     <t t-name="custom_barcode_app.ScanningDisplay" owl="1">
-            <div style="font-family:'Argentum Sans'; height:100%;">
+            <div id="gc_scanning_display" style="font-family:'Argentum Sans';position: absolute; height:100%;top: 0px;height: 100vh;width: 100vw;">
                     <t>
                         <div id="popup1" class="validate_popup_overlay" t-if="state.validate_popup">
                             <div style="height:100%;">

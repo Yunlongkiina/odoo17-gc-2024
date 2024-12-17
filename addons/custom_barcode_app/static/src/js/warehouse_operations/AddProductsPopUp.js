@@ -116,6 +116,12 @@ export class SearchBar1 extends Component {
         await this.props.selectedProductFunction(part)
     }
 
+    backToPreviousStep=()=>{
+        document.getElementById('yunlong_back').click();
+        console.log('I am clciked!!');
+        
+    }
+
 }
 
 export class WarehouseDetailsTable extends Component {

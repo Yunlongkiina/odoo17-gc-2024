@@ -155,19 +155,16 @@
             </t>
             <t t-else="">
                 <div style="height:100%;background-color:#F3F3F3">
-                        <div style="display:flex;background-color:#06516E;align-items: center;">
-                            <div t-on-click="props.back_button"
-                         style="color : white; padding: 0.1rem 2rem; font-size: 50px;">
-                        <i class="fa fa-angle-left"></i>
-                    </div>
+                        <div style="display:none;background-color:#06516E;align-items: center;">
+                            <div id="yunlong_back" t-on-click="props.back_button" style="color : white; padding: 0.1rem 2rem; font-size: 50px;">
+                                <i class="fa fa-angle-left"></i>
+                            </div>
                         </div>
 
                     <div style="width: 100%;display: flex;flex-direction: row;flex-wrap: wrap;justify-content: center;align-items: center;height:100px;">
                             <div style="width:100%;">
                                 <SearchBar1 selectedProductFunction="selectProductSearchBar"/>
                             </div>
-
-
                         </div>
                 </div>
             </t>
@@ -183,7 +180,7 @@
                     <div class="search-bar-list"
                          style="overflow-y: auto;position:absolute;margin-top: 10px;border-radius: 0.5rem;right: 0;z-index: 10;max-height: calc(100vh - 134px - 160px);cursor: pointer;width:99vw; ">
                             <t t-if="state.parts.length>0">
-                                <div style="display:flex;flex-wrap:wrap;gap:8px;background-color: #F3F3F3;">
+                                <div style="display:flex;flex-wrap:wrap;gap:12vw;background-color: #F3F3F3;">
                                     <t t-foreach="state.parts" t-as="part" t-key="part_index">
                                             <div style="font-family: 'Argentum Sans'; width:40vw; background-color:white; "
                                                  t-on-click="()=> this.selectProduct(part)">
@@ -218,14 +215,20 @@
     </t>
     
     <t t-name="custom_barcode_app.SearchBar1" owl="1">
-            <div class="search-bar-container-1">
+            <div class="search-bar-container-1" style="width: 100vw;">
+                <div style="display:flex;background-color:#06516E;align-items: center;">
+                    <div t-on-click="backToPreviousStep" style="color : white; padding: 0.1rem 2rem; font-size: 50px;">
+                        <i class="fa fa-angle-left"></i>
+                    </div>
                 <input id="add_product_input_gc" class="search-bar-input" type="text" placeholder="Search The Product...." t-on-input="setQuery"
                        t-on-click="onFocus" style="max-width:500px; margin:0px auto; border:1px solid #06516E"/>
+
+                </div>
                 <t t-if="state.is_visible">
                     <div class="search-bar-list"
                          style="overflow-y: auto;margin-top: 10px;border-radius: 0.5rem;left: 0;right: 0;max-height: calc(100vh - 134px);cursor: pointer; ">
                             <t t-if="state.parts.length>0">
-                                <div style="display:flex;flex-wrap:wrap;gap:8px;background-color: #F3F3F3;">
+                                <div style="display:flex;flex-wrap:wrap;gap:12vw;background-color: #F3F3F3;padding-left: 12px;">
                                     <t t-foreach="state.parts" t-as="part" t-key="part_index">
                                             <div style="font-family: 'Argentum Sans'; width:40vw; background-color:white; "
                                                  t-on-click="()=> this.selectProduct(part)">

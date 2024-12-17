@@ -157,10 +157,10 @@
 
                         </t>
                         <div style=" position:fixed;bottom: 0px;width: 100%;">
-                            <button type="button" class="confirm-button" t-on-click="addProductPopup">Add Products</button>
 <!--                            <button type="button" t-on-click="validateTransferPrepareLines"-->
 <!--                                        class="confirm-button" t-attf-style ="{{ state.display_parts.length==0 ? 'background-color:#2E3944' :''}};pointer-events:{{ state.display_parts.length==0 ? 'none' :'auto'}};">Validate</button>-->
                             <button t-attf-style ="{{ display_parts_list.length==1 and display_parts_list[0].length==0 ? 'background-color:#2E3944' :''}};pointer-events:{{ display_parts_list.length==1 and display_parts_list[0].length==0 ? 'none' :'auto'}};" type="button" t-on-click="validatePopUp" class="confirm-button"><span>Apply</span></button>
+                            <button type="button" class="confirm-button" t-on-click="addProductPopup">Add Products</button>
 
                         </div>
 

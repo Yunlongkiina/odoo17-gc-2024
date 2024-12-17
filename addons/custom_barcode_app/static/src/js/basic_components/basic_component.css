@@ -20,6 +20,8 @@
 
 }
 
+.product-select-dropdown tr:nth-child(2) { display:none;}
+
 .dropdown-list {
     position: absolute;
     margin-top: 10px;

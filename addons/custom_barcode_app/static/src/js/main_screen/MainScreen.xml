@@ -63,7 +63,7 @@
                             </div>
                         </button>
 
-                        <button t-on-click="startWarehouseOperation" class="button-1" style="display: flex; flex-wrap: wrap;justify-content: center;align-items:center;">
+                        <button t-on-click="startWarehouseOperation" class="button-1" style="display: none; flex-wrap: wrap;justify-content: center;align-items:center;">
                             <div  style="">
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 604.82 428.39" class="icon-svg">
@@ -90,7 +90,7 @@
                             </div>
                         </button>
 
-                        <button t-on-click="startProductDetails" class="button-1" style="display: flex; flex-wrap: wrap;justify-content: center;align-items:center;">
+                        <button t-on-click="startProductDetails" class="button-1" style="display: none; flex-wrap: wrap;justify-content: center;align-items:center;">
                             <div>
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 461.97 445.76" class="icon-svg">
@@ -116,7 +116,7 @@
                         </button>
 
 
-                        <button t-on-click="inventoryAdjustment" class="button-1" style="display: flex; flex-wrap: wrap;justify-content: center;align-items:center;">
+                        <button t-on-click="inventoryAdjustment" class="button-1" style="display: none; flex-wrap: wrap;justify-content: center;align-items:center;">
                             <div>
                                 <div>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 673 404" class="icon-svg">

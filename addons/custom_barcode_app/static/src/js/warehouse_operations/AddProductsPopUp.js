@@ -156,7 +156,8 @@ export class CollapsableRow extends Component {
 export class AddProductsPopUp extends Component {
     setup() {
         this.state = useState({
-            display_value: "1",
+            // set up init value for add product
+            display_value: "0",
             part_details: {},
             part_available: false,
             selected_part: {},

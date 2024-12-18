@@ -44,47 +44,47 @@
                                         <div>
                                             <div style=" display: grid;grid-template-columns: repeat(3, 1fr);grid-gap: 10px;padding-left: 20px;">
                                                 <button type="button" value="7" class="operator btn btn-info"
-                                                        style=" height: 55px; width:55px;font-size: 2rem!important;"
+                                                        style=" height: 20vw; width:20vw;font-size: 2rem!important;"
                                                         t-on-click="digitValue">7</button>
                                                 <button type="button" value="8" class="operator btn btn-info"
-                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        style=" height: 20vw;width:20vw;font-size: 2rem!important;"
                                                         t-on-click="digitValue">8</button>
                                                 <button type="button" value="9" class="operator btn btn-info"
-                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        style=" height: 20vw;width:20vw;font-size: 2rem!important;"
                                                         t-on-click="digitValue">9</button>
 
                                                 <button type="button" value="4" class="operator btn btn-info"
-                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        style=" height: 20vw;width:20vw;font-size: 2rem!important;"
                                                         t-on-click="digitValue">4</button>
                                                 <button type="button" value="5" class="operator btn btn-info"
-                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        style=" height: 20vw;width:20vw;font-size: 2rem!important;"
                                                         t-on-click="digitValue">5</button>
                                                 <button type="button" value="6" class="operator btn btn-info"
-                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        style=" height: 20vw;width:20vw;font-size: 2rem!important;"
                                                         t-on-click="digitValue">6</button>
 
 
                                                 <button type="button" value="1" class="operator btn btn-info"
-                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        style=" height: 20vw;width:20vw;font-size: 2rem!important;"
                                                         t-on-click="digitValue">1</button>
                                                 <button type="button" value="2" class="operator btn btn-info"
-                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        style=" height: 20vw;width:20vw;font-size: 2rem!important;"
                                                         t-on-click="digitValue">2</button>
                                                 <button type="button" value="3" class="operator btn btn-info"
-                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        style=" height: 20vw;width:20vw;font-size: 2rem!important;"
                                                         t-on-click="digitValue">3</button>
 
 
                                                 <button type="button" value="0" class="operator btn btn-info"
-                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        style=" height: 20vw;width:20vw;font-size: 2rem!important;"
                                                         t-on-click="digitValue">0</button>
                                                 <button type="button" class="decimal function btn btn-secondary"
                                                         value="." t-on-click="selectDot"
-                                                        style=" height: 55px;width:55px;font-size: 2rem!important;">.</button>
+                                                        style=" height: 20vw;width:20vw;font-size: 2rem!important;">.</button>
                                                 <button type="button"
                                                         class="all-clear function btn btn-danger btn-sm"
                                                         value="clear"
-                                                        style=" height: 55px;width:55px;font-size: 2rem!important;"
+                                                        style=" height: 20vw;width:20vw;font-size: 2rem!important;"
                                                         t-on-click="clearLastDigit"><i class="fa fa-arrow-left"/></button>
 
                                             </div>
@@ -221,7 +221,7 @@
                         <i class="fa fa-angle-left"></i>
                     </div>
                 <input id="add_product_input_gc" class="search-bar-input" type="text" placeholder="Search The Product...." t-on-input="setQuery"
-                       t-on-click="onFocus" style="max-width:500px; margin:0px auto; border:1px solid #06516E"/>
+                       t-on-click="onFocus" style="max-width:500px; margin:0px auto; border:1px solid #06516E;margin-right: 10px"/>
 
                 </div>
                 <t t-if="state.is_visible">

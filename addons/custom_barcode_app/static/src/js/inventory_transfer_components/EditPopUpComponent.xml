@@ -9,7 +9,7 @@
                         <i class="fa fa-angle-left"></i>
                     </div>
             </div>
-            <div style="display:flex;justify-content:center;overflow:auto;font-family:Argentum Sans;position: absolute;top: 84px;bottom: 0px;left: 0;right: 0;">
+            <div style="display:flex;justify-content:center;overflow:auto;font-family:Argentum Sans;position: absolute;top: 10vw;bottom: 0px;left: 0;right: 0;">
                 <div class="product-info-container">
                     <div>
                         <h1 style="background-color: #06516e;padding: 10px;border-radius: 5px;font-weight: 600;color: white;"><span t-esc="props.edit_popup_part.display_name"/></h1>

@@ -4,7 +4,7 @@
     <t t-name="custom_barcode_app.AddProductsPopUp" owl="1">
         <div style="height:100%;position:relative;">
             <t t-if="state.part_available">
-                <div style="display:flex;text-align:center;background-color:#06516E;align-items: center;">
+                <div style="display:flex;text-align:center;background-color:#06516E;align-items: center;height:10vw">
                     <div t-on-click="props.back_button"
                          style="color : white; padding: 0.1rem 2rem; font-size: 50px;">
                         <i class="fa fa-angle-left"></i>

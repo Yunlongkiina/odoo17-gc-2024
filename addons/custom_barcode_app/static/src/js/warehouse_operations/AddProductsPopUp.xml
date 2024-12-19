@@ -4,7 +4,7 @@
     <t t-name="custom_barcode_app.AddProductsPopUp" owl="1">
         <div style="height:100%;position:relative;">
             <t t-if="state.part_available">
-                <div style="display:flex;text-align:center;background-color:#06516E;align-items: center;height:10vw">
+                <div style="display:flex;text-align:center;background-color:#06516E;align-items: center;height:12vw">
                     <div t-on-click="props.back_button"
                          style="color : white; padding: 0.1rem 2rem; font-size: 50px;">
                         <i class="fa fa-angle-left"></i>
@@ -14,7 +14,7 @@
                         <SearchBar selectedProductFunction="selectProductSearchBar"/>
                     </div>
                 </div>
-                <div style="overflow: auto;display: flex;justify-content: center;position: absolute;top: 84px;bottom: 0px;left: 0;right: 0;">
+                <div style="overflow: auto;display: flex;justify-content: center;position: absolute;top: 10vw;bottom: 0px;left: 0;right: 0;">
                     <div class="product-info-container">
                         <div style="display:flex;flex-direction:row">
                             <h1 style="background-color: #06516e;padding: 10px;border-radius:5px;font-weight:600;color:white;width:70vw;font-size:1rem">

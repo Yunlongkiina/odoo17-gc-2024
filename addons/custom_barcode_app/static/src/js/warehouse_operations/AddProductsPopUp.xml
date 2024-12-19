@@ -14,7 +14,7 @@
                         <SearchBar selectedProductFunction="selectProductSearchBar"/>
                     </div>
                 </div>
-                <div style="overflow: auto;display: flex;justify-content: center;position: absolute;top: 10vw;bottom: 0px;left: 0;right: 0;">
+                <div style="overflow: auto;display: flex;justify-content: center;position: absolute;top: 12vw;bottom: 0px;left: 0;right: 0;">
                     <div class="product-info-container">
                         <div style="display:flex;flex-direction:row">
                             <h1 style="background-color: #06516e;padding: 10px;border-radius:5px;font-weight:600;color:white;width:70vw;font-size:1rem">
